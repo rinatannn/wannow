@@ -8,3 +8,90 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+ /* Aboutページのメイン画像 */
+.about-image {
+  width: 100%;
+  max-width: 800px;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Aboutページ全体のレイアウト */
+.about-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+body {
+  margin: 0;
+  background-color: #eff7f6;
+}
+
+/* ヘッダー */
+header {
+  background-color: #ffffff;
+  padding: 20px 40px;
+}
+
+header nav {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* ヘッダー右側のリンク */
+.nav-links {
+  display: flex;
+  gap: 24px;
+}
+
+/* ヘッダーのリンク */
+header a {
+  color: #333;
+  text-decoration: none;
+}
+
+/* アプリ名 */
+header nav > a:first-child {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* Aboutページの機能一覧 */
+.feature-list {
+  display: flex;
+  gap: 20px;
+}
+
+.feature-card {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.feature-card h3 {
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* Topページ全体のレイアウト */
+.top-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Topページ全体のレイアウト */
+.top-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}

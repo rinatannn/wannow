@@ -22,7 +22,25 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+<body>
+  <%# 全ページ共通のヘッダー %>
+  
+  <header>
+  <nav>
+    <%# アプリ名をクリックするとトップページへ移動 %>
+    <%= link_to "WAN NOW", root_path %>
+
+    <%# 未ログイン時に利用できるページへのリンク %>
+    <div class="nav-links">
+      <%= link_to "Top", root_path %>
+      <%= link_to "About", about_path %>
+    </div>
+  </nav>
+</header>
+
+  <%# 各ページ固有の内容を表示 %>
+  <main>
     <%= yield %>
-  </body>
+  </main>
+</body>
 </html>
