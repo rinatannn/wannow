@@ -1,0 +1,19 @@
+<%# マイページ %>
+<div class="user-page-container">
+  <h1>マイページ</h1>
+
+  <p>
+    <strong>氏名：</strong>
+    <%= @user.name %>
+  </p>
+
+  <p>
+    <strong>メールアドレス：</strong>
+    <%= @user.email_address %>
+  </p>
+
+  <%= link_to "会員情報を編集する", edit_user_path(@user) %>
+
+  <%= button_to "退会する", user_path(@user), method: :delete %>
+
+</div>
