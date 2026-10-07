@@ -21,7 +21,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to root_path
+      start_new_session_for @user
+      redirect_to mypage_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -38,6 +39,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # 会員を退会
   def destroy
     @user = Current.user
     @user.destroy
