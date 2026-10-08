@@ -14,6 +14,10 @@ class UsersController < ApplicationController
   # 会員情報編集画面を表示
   def edit
     @user = Current.user
+
+    if params[:id].to_i != @user.id
+      redirect_to mypage_path
+    end
   end
 
   # 新規登録
@@ -32,19 +36,24 @@ class UsersController < ApplicationController
   def update
     @user = Current.user
 
+    if params[:id].to_i != @user.id
+      redirect_to mypage_path
+      return
+    end
+
     if @user.update(user_params)
       redirect_to mypage_path
     else
       render :edit, status: :unprocessable_entity
     end
-  end
+ end
 
   # 会員を退会
   def destroy
     @user = Current.user
     @user.destroy
     reset_session
-    redirect_to root_path
+    redirect_to new_user_path
   end
 
   private

@@ -40,10 +40,18 @@
       <%= f.password_field :password_confirmation %>
     </div>
 
-    <%# 更新ボタン %>
+        <%# 更新ボタン %>
     <div>
       <%= f.submit "更新する" %>
     </div>
 
   <% end %>
+
+  <%# 退会ボタン %>
+  <div>
+    <%= button_to "退会する",
+                  user_path(@user),
+                  method: :delete,
+                  data: { turbo_confirm: "本当に退会しますか？" } %>
+  </div>
 </div>

@@ -36,8 +36,13 @@
 
           <%# ログイン状態によって表示するリンクを切り替える %>
           <% if authenticated? %>
+            <%# ログイン中はマイページへのリンクを表示 %>
+            <%= link_to "マイページ", mypage_path %>
+
+            <%# ログアウト %>
             <%= button_to "Sign out", session_path, method: :delete %>
           <% else %>
+            <%# 未ログイン時は新規登録・ログインを表示 %>
             <%= link_to "新規登録", new_user_path %>
             <%= link_to "Sign in", new_session_path %>
           <% end %>
