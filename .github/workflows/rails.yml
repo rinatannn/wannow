@@ -1,0 +1,40 @@
+
+# WanNowの本番環境へのデプロイ設定
+name: Deploy WanNow
+
+# GitHubのActions画面から手動で実行する
+on:
+  workflow_dispatch:
+
+# デプロイ処理を定義する
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # GitHub Actionsの実行環境にコードを取得する
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # SSH接続に必要な秘密鍵を設定する
+      - name: Set up SSH
+        env:
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          HOST_NAME: ${{ secrets.HOST_NAME }}
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "$PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          printf '%s %s\n' "$HOST_NAME" 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGMsbDulAqqPOYaD02JRguK130rihd7/NCqsTTU7zIjV' > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+
+      # 本番環境へのSSH接続を確認する
+      - name: Test SSH connection
+        env:
+          HOST_NAME: ${{ secrets.HOST_NAME }}
+          USER_NAME: ${{ secrets.USER_NAME }}
+        run: |
+          ssh -o BatchMode=yes -o StrictHostKeyChecking=yes \
+            "$USER_NAME@$HOST_NAME" "echo 'SSH connection successful'"
