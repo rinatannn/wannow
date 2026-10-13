@@ -6,9 +6,16 @@ name: Deploy WanNow
 on:
   workflow_dispatch:
 
+# 同じデプロイが同時に実行されることを防ぐ
+concurrency:
+  group: wannow-production-deploy
+  cancel-in-progress: false
+
 # デプロイ処理を定義する
 jobs:
   deploy:
+    # mainブランチからの実行だけを許可する
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
@@ -29,7 +36,6 @@ jobs:
           printf '%s %s\n' "$HOST_NAME" 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGMsbDulAqqPOYaD02JRguK130rihd7/NCqsTTU7zIjV' > ~/.ssh/known_hosts
           chmod 600 ~/.ssh/known_hosts
 
-
       # 本番環境へのSSH接続を確認する
       - name: Test SSH connection
         env:
@@ -48,7 +54,7 @@ jobs:
           ssh -o BatchMode=yes -o StrictHostKeyChecking=yes \
             "$USER_NAME@$HOST_NAME" "cd /home/ubuntu/wannow && pwd && git status --short"
 
-      # 本番環境のGitブランチを確認する
+      # 本番環境のGitブランチと未コミットの変更を確認する
       - name: Check production branch
         env:
           HOST_NAME: ${{ secrets.HOST_NAME }}
@@ -56,4 +62,55 @@ jobs:
         run: |
           ssh -o BatchMode=yes -o StrictHostKeyChecking=yes \
             "$USER_NAME@$HOST_NAME" \
-            "cd /home/ubuntu/wannow && test \"\$(git branch --show-current)\" = main && git status --short"
+            "cd /home/ubuntu/wannow && test \"\$(git branch --show-current)\" = main && test -z \"\$(git status --porcelain)\""
+
+            # 本番環境にGitHub Actions実行時のコミットを反映する
+      - name: Update production code
+        env:
+          HOST_NAME: ${{ secrets.HOST_NAME }}
+          USER_NAME: ${{ secrets.USER_NAME }}
+          DEPLOY_SHA: ${{ github.sha }}
+        run: |
+          ssh -o BatchMode=yes -o StrictHostKeyChecking=yes \
+            "$USER_NAME@$HOST_NAME" \
+            "cd /home/ubuntu/wannow && git fetch origin main && git merge-base --is-ancestor \"$DEPLOY_SHA\" origin/main && git merge --ff-only \"$DEPLOY_SHA\""
+
+      # 本番環境で必要なGemをインストールする
+      - name: Install production gems
+        env:
+          HOST_NAME: ${{ secrets.HOST_NAME }}
+          USER_NAME: ${{ secrets.USER_NAME }}
+        run: |
+          ssh -o BatchMode=yes -o StrictHostKeyChecking=yes \
+            "$USER_NAME@$HOST_NAME" \
+            "cd /home/ubuntu/wannow && bundle config set --local without 'development test' && bundle install"
+
+      # 本番データベースのマイグレーションを実行する
+      - name: Migrate production database
+        env:
+          HOST_NAME: ${{ secrets.HOST_NAME }}
+          USER_NAME: ${{ secrets.USER_NAME }}
+        run: |
+          ssh -o BatchMode=yes -o StrictHostKeyChecking=yes \
+            "$USER_NAME@$HOST_NAME" \
+            "cd /home/ubuntu/wannow && RAILS_ENV=production bin/rails db:migrate"
+
+      # 本番環境用のアセットを生成する
+      - name: Precompile production assets
+        env:
+          HOST_NAME: ${{ secrets.HOST_NAME }}
+          USER_NAME: ${{ secrets.USER_NAME }}
+        run: |
+          ssh -o BatchMode=yes -o StrictHostKeyChecking=yes \
+            "$USER_NAME@$HOST_NAME" \
+            "cd /home/ubuntu/wannow && RAILS_ENV=production bin/rails assets:precompile"
+
+      # 本番環境のPumaを再起動する
+      - name: Restart production Puma
+        env:
+          HOST_NAME: ${{ secrets.HOST_NAME }}
+          USER_NAME: ${{ secrets.USER_NAME }}
+        run: |
+          ssh -o BatchMode=yes -o StrictHostKeyChecking=yes \
+            "$USER_NAME@$HOST_NAME" \
+            "sudo -n systemctl restart puma && sudo -n systemctl is-active --quiet puma"
