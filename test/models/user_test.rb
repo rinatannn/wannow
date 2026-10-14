@@ -21,6 +21,6 @@ class UserTest < ActiveSupport::TestCase
     assert_not user.valid?
 
     # メールアドレスの重複エラーが登録されることを確認する
-    assert user.errors.added?(:email_address, :taken)
+    assert_includes user.errors.details[:email_address].map { |error| error[:error] }, :taken
   end
 end
