@@ -4,7 +4,9 @@ class User < ApplicationRecord
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
-  # 氏名とメールアドレスを必須にする
+  # 氏名を必須にする
   validates :name, presence: true
-  validates :email_address, presence: true
+
+  # メールアドレスを必須にし、重複登録を防ぐ
+  validates :email_address, presence: true, uniqueness: true
 end
