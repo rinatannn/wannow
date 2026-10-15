@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_10_07_085518) do
+ActiveRecord::Schema[8.0].define(version: 2026_10_15_011522) do
+  create_table "dogs", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name", null: false
+    t.string "breed", null: false
+    t.string "personality", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_dogs_on_user_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "ip_address"
@@ -29,5 +39,6 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_07_085518) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "dogs", "users"
   add_foreign_key "sessions", "users"
 end

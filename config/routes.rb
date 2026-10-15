@@ -5,6 +5,9 @@ Rails.application.routes.draw do
  # ユーザー新規登録
  resources :users, only: [ :new, :create, :show, :edit, :update, :destroy ]
 
+ # 犬プロフィール
+ resources :dogs, only: [ :new, :create, :show, :edit, :update, :destroy ]
+
   # マイページ
   get "mypage", to: "homes#mypage"
 
