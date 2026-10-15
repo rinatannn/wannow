@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_10_15_021352) do
+ActiveRecord::Schema[8.0].define(version: 2026_10_15_045920) do
   create_table "dog_runs", force: :cascade do |t|
     t.string "name", null: false
     t.string "address", null: false
@@ -33,6 +33,23 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_15_021352) do
     t.index ["user_id"], name: "index_dogs_on_user_id"
   end
 
+  create_table "group_memberships", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_group_memberships_on_group_id"
+    t.index ["user_id", "group_id"], name: "index_group_memberships_on_user_id_and_group_id", unique: true
+    t.index ["user_id"], name: "index_group_memberships_on_user_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "ip_address"
@@ -52,5 +69,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_15_021352) do
   end
 
   add_foreign_key "dogs", "users"
+  add_foreign_key "group_memberships", "groups"
+  add_foreign_key "group_memberships", "users"
   add_foreign_key "sessions", "users"
 end

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+# グループ一覧・詳細・参加・退会
+resources :groups, only: [ :index, :show ] do
+  resource :group_membership, only: [ :create, :destroy ]
+end
+
   # ドッグラン一覧・詳細
   resources :dog_runs, only: [ :index, :show ]
   resource :session

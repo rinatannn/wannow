@@ -1,0 +1,12 @@
+<h1>グループ一覧</h1>
+
+<div class="container">
+  <% @groups.each do |group| %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h3><%= link_to group.name, group_path(group) %></h3>
+        <p><%= group.description %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
