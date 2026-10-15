@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dog: one
+  dog_run: one
+  checked_in_at: 2026-10-15 08:46:47
+  checked_out_at: 2026-10-15 08:46:47
+
+two:
+  dog: two
+  dog_run: two
+  checked_in_at: 2026-10-15 08:46:47
+  checked_out_at: 2026-10-15 08:46:47

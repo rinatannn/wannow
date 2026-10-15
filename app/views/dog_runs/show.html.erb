@@ -13,4 +13,52 @@
 <p>緯度：<%= @dog_run.latitude %></p>
 <p>経度：<%= @dog_run.longitude %></p>
 
+<h2>現在の利用状況</h2>
+
+<p>
+  現在の利用頭数：
+  <%= @dog_run.check_ins.where(checked_out_at: nil).count %> 頭
+</p>
+
+<hr>
+
+<h2>チェックイン</h2>
+
+<% if authenticated? %>
+  <% dogs = Current.user.dogs %>
+
+  <% available_dogs = dogs.where.not(
+  id: CheckIn.where(checked_out_at: nil).select(:dog_id)
+) %>
+
+ <% active_check_ins = @dog_run.check_ins
+                              .where(dog_id: dogs.select(:id), checked_out_at: nil)
+                              .includes(:dog) %>
+
+<% active_check_ins.each do |check_in| %>
+  <p><%= check_in.dog.name %></p>
+
+  <%= button_to "チェックアウトする",
+                check_in_path(check_in),
+                method: :delete %>
+<% end %>
+
+  <% if available_dogs.any? %>
+    <%= form_with url: check_ins_path, method: :post do |f| %>
+      <%= hidden_field_tag :dog_run_id, @dog_run.id %>
+
+      <p>
+        <%= f.label :dog_id, "チェックインする犬" %>
+        <%= select_tag :dog_id, options_from_collection_for_select(available_dogs, :id, :name) %>
+      </p>
+
+      <%= f.submit "チェックインする" %>
+    <% end %>
+  <% elsif dogs.empty? %>
+  <p>チェックインするには犬の登録が必要です。</p>
+<% end %>
+<% else %>
+  <p>チェックインするにはログインが必要です。</p>
+<% end %>
+
 <%= link_to "ドッグラン一覧に戻る", dog_runs_path %>
