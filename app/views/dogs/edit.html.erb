@@ -1,0 +1,24 @@
+<h1>愛犬プロフィール編集</h1>
+
+<%= form_with model: @dog do |f| %>
+  <div>
+    <%= f.label :name, "愛犬の名前" %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :breed, "犬種" %>
+    <%= f.text_field :breed %>
+  </div>
+
+  <div>
+    <%= f.label :personality, "性格" %>
+    <%= f.text_area :personality %>
+  </div>
+
+  <div>
+    <%= f.submit "変更を保存する" %>
+  </div>
+<% end %>
+
+<%= link_to "詳細画面に戻る", dog_path(@dog) %>

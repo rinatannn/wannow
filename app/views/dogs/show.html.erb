@@ -1,0 +1,12 @@
+<h1>愛犬プロフィール</h1>
+
+<div>
+  <p><strong>名前：</strong><%= @dog.name %></p>
+  <p><strong>犬種：</strong><%= @dog.breed %></p>
+  <p><strong>性格：</strong><%= @dog.personality %></p>
+</div>
+
+<%= link_to "編集する", edit_dog_path(@dog) %>
+<%= button_to "削除する", dog_path(@dog),
+              method: :delete,
+              data: { turbo_confirm: "本当に削除しますか？" } %>
