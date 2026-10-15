@@ -32,5 +32,4 @@ class CheckInsController < ApplicationController
                 notice: "チェックアウトしました"
   end
 end
-
 end

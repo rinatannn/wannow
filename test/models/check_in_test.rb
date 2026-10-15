@@ -63,5 +63,4 @@ class CheckInTest < ActiveSupport::TestCase
 
   assert new_check_in.valid?
 end
-
 end

@@ -9,7 +9,7 @@ end
   resource :session
   resources :passwords, param: :token
 
-  # チェックイン・チェックアウト
+# チェックイン・チェックアウト
 resources :check_ins, only: [ :create, :destroy ]
 
  # ユーザー新規登録
