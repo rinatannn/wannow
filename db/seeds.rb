@@ -5,4 +5,19 @@ User.find_or_create_by!(email_address: "sample@example.com") do |user|
   user.password_confirmation = "password"
 end
 
+# グループの初期データ
+groups = [
+  { name: "小型犬グループ", description: "小型犬の飼い主同士で交流するグループ" },
+  { name: "中型犬グループ", description: "中型犬の飼い主同士で交流するグループ" },
+  { name: "大型犬グループ", description: "大型犬の飼い主同士で交流するグループ" },
+  { name: "パピー（子犬）グループ", description: "子犬の飼い主同士で交流するグループ" },
+  { name: "シニア犬グループ", description: "シニア犬の飼い主同士で交流するグループ" }
+]
+
+groups.each do |group|
+  Group.find_or_create_by!(name: group[:name]) do |record|
+    record.description = group[:description]
+  end
+end
+
 puts "seedデータの作成が完了しました"

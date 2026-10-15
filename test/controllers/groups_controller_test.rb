@@ -1,0 +1,13 @@
+require "test_helper"
+
+class GroupsControllerTest < ActionDispatch::IntegrationTest
+  test "should get index" do
+    get groups_url
+    assert_response :success
+  end
+
+  test "should get show" do
+    get group_url(groups(:one))
+    assert_response :success
+  end
+end

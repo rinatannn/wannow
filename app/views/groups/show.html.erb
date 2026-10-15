@@ -1,0 +1,22 @@
+<div class="container">
+  <h1><%= @group.name %></h1>
+
+  <p><%= @group.description %></p>
+
+  <% if authenticated? %>
+    <% if Current.user.groups.exists?(@group.id) %>
+      <%= button_to "グループから退会する",
+                    group_group_membership_path(@group),
+                    method: :delete %>
+    <% else %>
+      <%= button_to "グループに参加する",
+                    group_group_membership_path(@group),
+                    method: :post %>
+    <% end %>
+  <% else %>
+    <p>グループに参加するにはログインが必要です。</p>
+    <%= link_to "ログインする", new_session_path %>
+  <% end %>
+
+  <%= link_to "グループ一覧に戻る", groups_path %>
+</div>
