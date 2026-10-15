@@ -1,0 +1,14 @@
+<h1>ドッグラン一覧</h1>
+
+<% if @dog_runs.any? %>
+  <% @dog_runs.each do |dog_run| %>
+    <div>
+      <h2><%= link_to dog_run.name, dog_run_path(dog_run) %></h2>
+      <p>住所：<%= dog_run.address %></p>
+      <p>営業時間：<%= dog_run.opening_time.strftime("%H:%M") %>〜<%= dog_run.closing_time.strftime("%H:%M") %></p>
+      <hr>
+    </div>
+  <% end %>
+<% else %>
+  <p>ドッグランはまだ登録されていません。</p>
+<% end %>

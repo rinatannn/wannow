@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # ドッグラン一覧・詳細
+  resources :dog_runs, only: [ :index, :show ]
   resource :session
   resources :passwords, param: :token
 
