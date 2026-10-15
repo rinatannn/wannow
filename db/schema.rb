@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_10_15_011522) do
+ActiveRecord::Schema[8.0].define(version: 2026_10_15_021352) do
+  create_table "dog_runs", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "address", null: false
+    t.time "opening_time", null: false
+    t.time "closing_time", null: false
+    t.boolean "indoor", default: false, null: false
+    t.decimal "latitude", null: false
+    t.decimal "longitude", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "dogs", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "name", null: false

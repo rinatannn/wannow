@@ -1,0 +1,16 @@
+<h1><%= @dog_run.name %></h1>
+
+<p>住所：<%= @dog_run.address %></p>
+
+<p>
+  営業時間：
+  <%= @dog_run.opening_time.strftime("%H:%M") %>〜
+  <%= @dog_run.closing_time.strftime("%H:%M") %>
+</p>
+
+<p>室内：<%= @dog_run.indoor? ? "あり" : "なし" %></p>
+
+<p>緯度：<%= @dog_run.latitude %></p>
+<p>経度：<%= @dog_run.longitude %></p>
+
+<%= link_to "ドッグラン一覧に戻る", dog_runs_path %>
