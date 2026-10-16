@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dog: one
+  dog_run: one
+  planned_at: 2026-10-15 23:28:10
+
+two:
+  dog: two
+  dog_run: two
+  planned_at: 2026-10-15 23:28:10

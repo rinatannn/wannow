@@ -1,0 +1,38 @@
+<h1>みんなの来場予定 🐶</h1>
+
+<p>これからドッグランに遊びに行くワンちゃんの予定一覧です。</p>
+
+<% if @visit_plans.any? %>
+  <% @visit_plans.each do |visit_plan| %>
+    <div>
+      <h3>
+        <%= link_to visit_plan.dog_run.name,
+                    dog_run_path(visit_plan.dog_run) %>
+      </h3>
+
+      <p>
+        🐶 ワンちゃん：<%= visit_plan.dog.name %>
+      </p>
+
+      <p>
+        📅 来場予定：
+        <%= visit_plan.planned_at.strftime("%Y年%m月%d日") %>
+        （<%= %w(日 月 火 水 木 金 土)[visit_plan.planned_at.wday] %>）
+        <%= visit_plan.planned_at.strftime("%H:%M") %>
+      </p>
+
+      <% if authenticated? && visit_plan.dog.user_id == Current.user.id %>
+        <%= button_to "予定をキャンセルする",
+                      visit_plan_path(visit_plan),
+                      method: :delete,
+                      data: { turbo_confirm: "この来場予定をキャンセルしますか？" } %>
+      <% end %>
+    </div>
+
+    <hr>
+  <% end %>
+<% else %>
+  <p>現在、登録されている来場予定はありません。</p>
+<% end %>
+
+<%= link_to "ドッグラン一覧に戻る", dog_runs_path %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_10_15_084647) do
+ActiveRecord::Schema[8.0].define(version: 2026_10_15_232809) do
   create_table "check_ins", force: :cascade do |t|
     t.integer "dog_id", null: false
     t.integer "dog_run_id", null: false
@@ -79,10 +79,22 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_15_084647) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  create_table "visit_plans", force: :cascade do |t|
+    t.integer "dog_id", null: false
+    t.integer "dog_run_id", null: false
+    t.datetime "planned_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dog_id"], name: "index_visit_plans_on_dog_id"
+    t.index ["dog_run_id"], name: "index_visit_plans_on_dog_run_id"
+  end
+
   add_foreign_key "check_ins", "dog_runs"
   add_foreign_key "check_ins", "dogs"
   add_foreign_key "dogs", "users"
   add_foreign_key "group_memberships", "groups"
   add_foreign_key "group_memberships", "users"
   add_foreign_key "sessions", "users"
+  add_foreign_key "visit_plans", "dog_runs"
+  add_foreign_key "visit_plans", "dogs"
 end

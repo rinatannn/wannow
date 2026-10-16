@@ -1,5 +1,6 @@
 class DogRun < ApplicationRecord
   has_many :check_ins, dependent: :destroy
+  has_many :visit_plans, dependent: :destroy
 
   validates :name, presence: true
   validates :address, presence: true
