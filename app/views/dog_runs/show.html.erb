@@ -61,4 +61,59 @@
   <p>チェックインするにはログインが必要です。</p>
 <% end %>
 
+<hr>
+
+<h2>来場予定を登録する</h2>
+
+<% if authenticated? %>
+  <% if Current.user.dogs.any? %>
+    <%= form_with url: visit_plans_path, method: :post do |f| %>
+      <%= hidden_field_tag :dog_run_id, @dog_run.id %>
+
+      <p>
+        <%= label_tag :dog_id, "来場予定の犬" %>
+        <%= select_tag :dog_id,
+              options_from_collection_for_select(Current.user.dogs, :id, :name) %>
+      </p>
+
+      <p>
+        <%= label_tag :planned_at, "来場予定日時" %>
+        <%= datetime_local_field_tag :planned_at, nil, required: true %>
+      </p>
+
+      <%= f.submit "来場予定を登録する" %>
+    <% end %>
+  <% else %>
+    <p>来場予定を登録するには、犬の登録が必要です。</p>
+  <% end %>
+<% else %>
+  <p>来場予定を登録するにはログインが必要です。</p>
+<% end %>
+
+<hr>
+
+<h2>このドッグランの来場予定</h2>
+
+<% visit_plans = @dog_run.visit_plans
+                          .includes(:dog)
+                          .where("planned_at >= ?", Time.current)
+                          .order(:planned_at) %>
+
+<% if visit_plans.any? %>
+  <% visit_plans.each do |visit_plan| %>
+    <p>
+      <%= visit_plan.dog.name %>：
+      <%= visit_plan.planned_at.strftime("%Y年%m月%d日") %>（<%= %w(日 月 火 水 木 金 土)[visit_plan.planned_at.wday] %>）<%= visit_plan.planned_at.strftime("%H:%M") %>
+    </p>
+
+    <% if authenticated? && visit_plan.dog.user_id == Current.user.id %>
+      <%= button_to "予定をキャンセルする",
+                    visit_plan_path(visit_plan),
+                    method: :delete %>
+    <% end %>
+  <% end %>
+<% else %>
+  <p>現在、来場予定はありません。</p>
+<% end %>
+
 <%= link_to "ドッグラン一覧に戻る", dog_runs_path %>
