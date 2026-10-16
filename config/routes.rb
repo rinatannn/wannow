@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # 投稿機能
+  resources :posts
+
   # グループ一覧・詳細・参加・退会
   resources :groups, only: [ :index, :show ] do
     resource :group_membership, only: [ :create, :destroy ]

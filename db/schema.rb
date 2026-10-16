@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_10_15_232809) do
+ActiveRecord::Schema[8.0].define(version: 2026_10_16_003527) do
   create_table "check_ins", force: :cascade do |t|
     t.integer "dog_id", null: false
     t.integer "dog_run_id", null: false
@@ -61,6 +61,15 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_15_232809) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "title", null: false
+    t.text "body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "ip_address"
@@ -94,6 +103,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_15_232809) do
   add_foreign_key "dogs", "users"
   add_foreign_key "group_memberships", "groups"
   add_foreign_key "group_memberships", "users"
+  add_foreign_key "posts", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "visit_plans", "dog_runs"
   add_foreign_key "visit_plans", "dogs"

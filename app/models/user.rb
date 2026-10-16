@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_secure_password
   has_many :sessions, dependent: :destroy
   has_many :dogs, dependent: :destroy
+  has_many :posts, dependent: :destroy
 
   # グループへの参加情報
   has_many :group_memberships, dependent: :destroy

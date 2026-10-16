@@ -1,0 +1,30 @@
+<h1>投稿編集</h1>
+
+<%= form_with model: @post do |f| %>
+  <% if @post.errors.any? %>
+    <div>
+      <h2>入力内容を確認してください</h2>
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :title, "タイトル" %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :body, "本文" %>
+    <%= f.text_area :body %>
+  </div>
+
+  <div>
+    <%= f.submit "更新する" %>
+  </div>
+<% end %>
+
+<p><%= link_to "投稿詳細に戻る", post_path(@post) %></p>
