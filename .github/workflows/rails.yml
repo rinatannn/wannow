@@ -57,3 +57,13 @@ jobs:
           ssh -o BatchMode=yes -o StrictHostKeyChecking=yes \
             "$USER_NAME@$HOST_NAME" \
             "cd /home/ubuntu/wannow && test \"\$(git branch --show-current)\" = main && git status --short"
+
+      # 本番環境の現在のコミットを確認する
+      - name: Check production commit
+        env:
+          HOST_NAME: ${{ secrets.HOST_NAME }}
+          USER_NAME: ${{ secrets.USER_NAME }}
+        run: |
+          ssh -o BatchMode=yes -o StrictHostKeyChecking=yes \
+            "$USER_NAME@$HOST_NAME" \
+            "cd /home/ubuntu/wannow && git log -1 --oneline"
