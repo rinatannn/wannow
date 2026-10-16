@@ -1,14 +1,42 @@
 <h1>ドッグラン一覧</h1>
 
+<h2>ドッグランを探す 🔍</h2>
+
+<%= form_with url: dog_runs_path, method: :get do |f| %>
+  <%= f.text_field :keyword,
+        value: params[:keyword],
+        placeholder: "ドッグラン名・住所で検索" %>
+
+  <%= f.submit "検索" %>
+<% end %>
+
+<p>
+  <%= link_to "検索条件をクリア", dog_runs_path %>
+</p>
+
+<hr>
+
 <% if @dog_runs.any? %>
   <% @dog_runs.each do |dog_run| %>
     <div>
-      <h2><%= link_to dog_run.name, dog_run_path(dog_run) %></h2>
+      <h2>
+        <%= link_to dog_run.name, dog_run_path(dog_run) %>
+      </h2>
+
       <p>住所：<%= dog_run.address %></p>
-      <p>営業時間：<%= dog_run.opening_time.strftime("%H:%M") %>〜<%= dog_run.closing_time.strftime("%H:%M") %></p>
+
+      <p>
+        営業時間：
+        <%= dog_run.opening_time.strftime("%H:%M") %>〜<%= dog_run.closing_time.strftime("%H:%M") %>
+      </p>
+
       <hr>
     </div>
   <% end %>
 <% else %>
-  <p>ドッグランはまだ登録されていません。</p>
+  <% if params[:keyword].present? %>
+    <p>検索条件に一致するドッグランが見つかりませんでした。</p>
+  <% else %>
+    <p>ドッグランはまだ登録されていません。</p>
+  <% end %>
 <% end %>

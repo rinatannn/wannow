@@ -22,4 +22,26 @@ class DogRunsControllerTest < ActionDispatch::IntegrationTest
     get dog_run_url(@dog_run)
     assert_response :success
   end
+
+  test "ドッグラン名で検索できる" do
+    get dog_runs_url, params: { keyword: "テストドッグラン" }
+
+    assert_response :success
+    assert_select "h2 a", text: @dog_run.name
+  end
+
+  test "住所で検索できる" do
+    get dog_runs_url, params: { keyword: "福岡県" }
+
+    assert_response :success
+    assert_select "h2 a", text: @dog_run.name
+  end
+
+  test "一致しないキーワードでは検索結果が表示されない" do
+    get dog_runs_url, params: { keyword: "北海道" }
+
+    assert_response :success
+    assert_select "h2 a", text: @dog_run.name, count: 0
+    assert_select "p", text: "検索条件に一致するドッグランが見つかりませんでした。"
+  end
 end
