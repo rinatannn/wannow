@@ -2,7 +2,6 @@
 require "test_helper"
 
 class Admin::GroupsControllerTest < ActionDispatch::IntegrationTest
-
   setup do
     @admin = users(:one)
     @group = groups(:one)
@@ -68,7 +67,7 @@ class Admin::GroupsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to admin_groups_url
   end
 
-  
+
   test "regular user cannot access admin groups" do
     delete session_url
 
