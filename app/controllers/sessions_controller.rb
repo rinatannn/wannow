@@ -10,15 +10,19 @@ class SessionsController < ApplicationController
   def new
   end
 
-  # 通常ログイン
-  def create
-    if user = User.authenticate_by(params.permit(:email_address, :password))
+# 通常ログイン
+def create
+  if user = User.authenticate_by(params.permit(:email_address, :password))
+    if user.is_active?
       start_new_session_for user
       redirect_to mypage_path
     else
-      redirect_to new_session_path, alert: "メールアドレスまたはパスワードが正しくありません。"
+      redirect_to new_session_path, alert: "このアカウントは利用停止されています。"
     end
+  else
+    redirect_to new_session_path, alert: "メールアドレスまたはパスワードが正しくありません。"
   end
+end
 
   # ゲストログイン
   def guest

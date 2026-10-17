@@ -4,8 +4,12 @@ one:
   name: テストユーザー1
   email_address: one@example.com
   password_digest: <%= password_digest %>
+  admin: true
+  is_active: true
 
 two:
   name: テストユーザー2
   email_address: two@example.com
   password_digest: <%= password_digest %>
+  admin: false
+  is_active: true
