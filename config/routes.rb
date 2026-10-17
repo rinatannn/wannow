@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   # ログイン・パスワード
   resource :session
+  post "guest_login", to: "sessions#guest", as: :guest_login
   resources :passwords, param: :token
 
   # ユーザー新規登録・管理

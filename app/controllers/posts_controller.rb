@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   allow_unauthenticated_access only: [ :index, :show ]
+  before_action :reject_guest, only: %i[new create edit update destroy]
 
   def index
   @posts = Post.includes(:user).order(created_at: :desc)
@@ -53,6 +54,12 @@ end
   end
 
   private
+
+  def reject_guest
+  if Current.user.guest?
+    redirect_to posts_path, alert: "ゲストユーザーは投稿を変更できません。"
+  end
+end
 
   def post_params
     params.require(:post).permit(:title, :body)

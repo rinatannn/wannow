@@ -1,6 +1,9 @@
-class VisitPlansController < ApplicationController
-  before_action :require_authentication, only: [ :create, :destroy ]
 
+class VisitPlansController < ApplicationController
+  before_action :require_authentication, only: %i[create destroy]
+  before_action :reject_guest, only: %i[create destroy]
+
+  # 来場予定一覧
   def index
     @visit_plans = VisitPlan
       .includes(:dog, :dog_run)
@@ -8,6 +11,7 @@ class VisitPlansController < ApplicationController
       .order(:planned_at)
   end
 
+  # 来場予定を登録
   def create
     dog = Current.user.dogs.find(params[:dog_id])
     dog_run = DogRun.find(params[:dog_run_id])
@@ -26,6 +30,7 @@ class VisitPlansController < ApplicationController
     end
   end
 
+  # 来場予定をキャンセル
   def destroy
     visit_plan = VisitPlan.joins(:dog)
                          .where(dogs: { user_id: Current.user.id })
@@ -35,5 +40,14 @@ class VisitPlansController < ApplicationController
     visit_plan.destroy!
 
     redirect_to dog_run_path(dog_run), notice: "来場予定をキャンセルしました"
+  end
+
+  private
+
+  # ゲストユーザーの操作を制限
+  def reject_guest
+    if Current.user.guest?
+      redirect_to visit_plans_path, alert: "ゲストユーザーは来場予定を登録・キャンセルできません。"
+    end
   end
 end

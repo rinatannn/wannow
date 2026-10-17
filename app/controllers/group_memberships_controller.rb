@@ -1,4 +1,8 @@
+
 class GroupMembershipsController < ApplicationController
+  before_action :reject_guest, only: %i[create destroy]
+
+  # グループに参加
   def create
     @group = Group.find(params[:group_id])
 
@@ -11,6 +15,7 @@ class GroupMembershipsController < ApplicationController
     end
   end
 
+  # グループから退会
   def destroy
     @group = Group.find(params[:group_id])
 
@@ -21,6 +26,15 @@ class GroupMembershipsController < ApplicationController
       redirect_to group_path(@group), notice: "グループから退会しました"
     else
       redirect_to group_path(@group), alert: "参加していないグループです"
+    end
+  end
+
+  private
+
+  # ゲストユーザーの操作を制限
+  def reject_guest
+    if Current.user.guest?
+      redirect_to groups_path, alert: "ゲストユーザーはグループに参加・退会できません。"
     end
   end
 end

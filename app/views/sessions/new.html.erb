@@ -1,11 +1,25 @@
+
 <%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
 <%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
 
+<h2>ログイン</h2>
+
 <%= form_with url: session_path do |form| %>
-  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-  <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %><br>
-  <%= form.submit "Sign in" %>
+  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "メールアドレス", value: params[:email_address] %><br>
+
+  <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "パスワード", maxlength: 72 %><br>
+
+  <%= form.submit "ログイン" %>
 <% end %>
+
 <br>
 
-<%= link_to "Forgot password?", new_password_path %>
+<%= link_to "パスワードを忘れた方", new_password_path %>
+
+<hr>
+
+<h3>お試しログイン</h3>
+
+<p>会員登録なしでWanNowをお試しいただけます。</p>
+
+<%= button_to "ゲストログイン", guest_login_path, method: :post %>
