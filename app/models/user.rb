@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :sessions, dependent: :destroy
   has_many :dogs, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   # グループへの参加情報
   has_many :group_memberships, dependent: :destroy

@@ -4,8 +4,11 @@ Rails.application.routes.draw do
     patch :suspend, on: :member
   end
 end
+
   # 投稿機能
-  resources :posts
+  resources :posts do
+   resources :comments, only: [ :create, :destroy ]
+  end
 
   # グループ一覧・詳細・参加・退会
   resources :groups, only: [ :index, :show ] do
