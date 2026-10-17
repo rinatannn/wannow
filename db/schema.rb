@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_10_16_003527) do
+ActiveRecord::Schema[8.0].define(version: 2026_10_17_045730) do
   create_table "check_ins", force: :cascade do |t|
     t.integer "dog_id", null: false
     t.integer "dog_run_id", null: false
@@ -85,6 +85,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_16_003527) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.boolean "admin", default: false, null: false
+    t.boolean "is_active", default: true, null: false
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 

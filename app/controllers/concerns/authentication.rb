@@ -26,8 +26,19 @@ module Authentication
     end
 
     def find_session_by_cookie
-      Session.find_by(id: cookies.signed[:session_id]) if cookies.signed[:session_id]
-    end
+  return unless cookies.signed[:session_id]
+
+  session = Session.includes(:user).find_by(id: cookies.signed[:session_id])
+  return unless session
+
+  unless session.user.is_active?
+    session.destroy
+    cookies.delete(:session_id)
+    return
+  end
+
+  session
+end
 
     def request_authentication
       session[:return_to_after_authenticating] = request.url

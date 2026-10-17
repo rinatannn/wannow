@@ -1,0 +1,33 @@
+<h1>ユーザー一覧（管理者）</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>名前</th>
+      <th>メールアドレス</th>
+      <th>利用状況</th>
+      <th>詳細</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email_address %></td>
+        <td>
+          <% if user.is_active? %>
+            利用中
+          <% else %>
+            利用停止
+          <% end %>
+        </td>
+        <td>
+          <%= link_to "詳細を見る", admin_user_path(user) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
