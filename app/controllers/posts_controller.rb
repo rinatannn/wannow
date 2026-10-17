@@ -2,8 +2,16 @@ class PostsController < ApplicationController
   allow_unauthenticated_access only: [ :index, :show ]
 
   def index
-    @posts = Post.includes(:user).order(created_at: :desc)
+  @posts = Post.includes(:user).order(created_at: :desc)
+
+  if params[:keyword].present?
+    keyword = "%#{Post.sanitize_sql_like(params[:keyword])}%"
+    @posts = @posts.where(
+      "title LIKE :keyword OR body LIKE :keyword",
+      keyword: keyword
+    )
   end
+end
 
   def show
     @post = Post.find(params[:id])
