@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     # 他のユーザーの編集画面は開けない
     if params[:id].to_i != @user.id
       redirect_to mypage_path
-      return
+      nil
     end
   end
 
