@@ -1,0 +1,77 @@
+
+<div class="admin-container">
+  <div class="admin-page-header">
+    <div>
+      <h1>グループ管理</h1>
+      <p>WanNowのグループを確認・管理できます。</p>
+    </div>
+
+    <%= link_to "＋ 新しいグループを作成",
+                new_admin_group_path,
+                class: "admin-primary-button" %>
+  </div>
+
+  <div class="admin-card">
+    <h2>登録済みグループ</h2>
+
+    <% if @groups.any? %>
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>グループ名</th>
+            <th>説明</th>
+            <th>参加人数</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @groups.each do |group| %>
+            <tr>
+              <td class="admin-group-name">
+                <%= group.name %>
+              </td>
+
+              <td>
+                <%= group.description.presence || "説明なし" %>
+              </td>
+
+              <td>
+                <%= group.users.count %> 人
+              </td>
+
+              <td>
+                <div class="admin-actions">
+                  <%= link_to "詳細",
+                              admin_group_path(group),
+                              class: "admin-action-link" %>
+
+                  <%= link_to "編集",
+                              edit_admin_group_path(group),
+                              class: "admin-action-link" %>
+
+                  <%= button_to "削除",
+                                admin_group_path(group),
+                                method: :delete,
+                                class: "admin-delete-button",
+                                form: {
+                                  data: {
+                                    turbo_confirm: "このグループを削除しますか？"
+                                  }
+                                } %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p class="admin-empty-message">
+        登録されているグループはありません。
+      </p>
+    <% end %>
+  </div>
+
+  <%= link_to "← トップページに戻る", root_path,
+              class: "admin-back-link" %>
+</div>

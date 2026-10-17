@@ -95,3 +95,251 @@ header nav > a:first-child {
   margin: 0 auto;
   padding: 40px 20px;
 }
+
+
+/* 管理画面共通 */
+.admin-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  color: #263b38;
+}
+
+.admin-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.admin-page-header h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+}
+
+.admin-page-header p {
+  margin: 0;
+  color: #647773;
+  font-size: 14px;
+}
+
+.admin-card {
+  padding: 28px;
+  background: #fff;
+  border: 1px solid #e0ebe8;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(38, 59, 56, 0.05);
+}
+
+.admin-card h2 {
+  margin: 0 0 22px;
+  font-size: 19px;
+}
+
+/* グループ一覧テーブル */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 16px 12px;
+  border-bottom: 1px solid #e7efed;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.admin-table th {
+  background: #f2f8f6;
+  color: #506762;
+  font-weight: 600;
+}
+
+.admin-table tbody tr:hover {
+  background: #f8fbfa;
+}
+
+.admin-group-name {
+  min-width: 150px;
+  font-weight: 600;
+}
+
+/* ボタン・操作リンク */
+.admin-primary-button {
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 8px;
+  background: #397b6b;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.admin-primary-button:hover {
+  background: #2e6558;
+}
+
+.admin-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.admin-action-link {
+  color: #397b6b;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.admin-action-link:hover {
+  text-decoration: underline;
+}
+
+.admin-delete-button {
+  padding: 6px 10px;
+  border: 1px solid #e6bcbc;
+  border-radius: 6px;
+  background: #fff7f7;
+  color: #a33c3c;
+  cursor: pointer;
+}
+
+.admin-delete-button:hover {
+  background: #fceaea;
+}
+
+.admin-empty-message {
+  padding: 24px 0;
+  color: #647773;
+  text-align: center;
+}
+
+.admin-back-link {
+  display: inline-block;
+  margin-top: 24px;
+  color: #397b6b;
+  text-decoration: none;
+}
+
+/* スマートフォン対応 */
+@media (max-width: 700px) {
+  .admin-container {
+    padding: 24px 14px;
+  }
+
+  .admin-page-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-card {
+    padding: 16px;
+    overflow-x: auto;
+  }
+
+  .admin-table {
+    min-width: 650px;
+  }
+}
+
+
+/* グループ詳細 */
+.admin-detail-list {
+  margin: 0 0 28px;
+}
+
+.admin-detail-list > div {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid #e7efed;
+}
+
+.admin-detail-list dt {
+  color: #647773;
+  font-weight: 600;
+}
+
+.admin-detail-list dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 600px) {
+  .admin-detail-list > div {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+
+/* 管理画面の入力フォーム */
+.admin-form-field {
+  margin-bottom: 24px;
+}
+
+.admin-form-field label {
+  display: block;
+  margin-bottom: 8px;
+  color: #405b54;
+  font-weight: 600;
+}
+
+.admin-form-field input,
+.admin-form-field textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #cbdcd6;
+  border-radius: 8px;
+  background: #fff;
+  color: #263b38;
+  font: inherit;
+}
+
+.admin-form-field input:focus,
+.admin-form-field textarea:focus {
+  outline: 2px solid #8bbdaf;
+  outline-offset: 2px;
+}
+
+.admin-form-field textarea {
+  resize: vertical;
+}
+
+.admin-form-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.admin-form-errors {
+  margin-bottom: 24px;
+  padding: 16px;
+  border: 1px solid #e6bcbc;
+  border-radius: 8px;
+  background: #fff7f7;
+  color: #a33c3c;
+}
+
+.admin-form-errors p {
+  font-weight: 600;
+}
+
+.admin-cancel-button {
+  display: inline-block;
+  padding: 11px 16px;
+  border: 1px solid #cbdcd6;
+  border-radius: 8px;
+  color: #405b54;
+  text-decoration: none;
+}
