@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  namespace :admin do
+
+namespace :admin do
+  resources :groups
   resources :users, only: [ :index, :show ] do
     patch :suspend, on: :member
   end

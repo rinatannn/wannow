@@ -1,0 +1,50 @@
+
+<div class="admin-container">
+  <div class="admin-page-header">
+    <div>
+      <h1>グループ詳細</h1>
+      <p>グループの情報と参加状況を確認できます。</p>
+    </div>
+  </div>
+
+  <div class="admin-card">
+    <h2><%= @group.name %></h2>
+
+    <dl class="admin-detail-list">
+      <div>
+        <dt>グループ名</dt>
+        <dd><%= @group.name %></dd>
+      </div>
+
+      <div>
+        <dt>説明</dt>
+        <dd><%= @group.description.presence || "説明はありません" %></dd>
+      </div>
+
+      <div>
+        <dt>参加人数</dt>
+        <dd><%= @group.users.count %> 人</dd>
+      </div>
+    </dl>
+
+    <div class="admin-actions">
+      <%= link_to "編集する",
+                  edit_admin_group_path(@group),
+                  class: "admin-primary-button" %>
+
+      <%= button_to "削除する",
+                    admin_group_path(@group),
+                    method: :delete,
+                    class: "admin-delete-button",
+                    form: {
+                      data: {
+                        turbo_confirm: "このグループを削除しますか？"
+                      }
+                    } %>
+    </div>
+  </div>
+
+  <%= link_to "← グループ一覧に戻る",
+              admin_groups_path,
+              class: "admin-back-link" %>
+</div>

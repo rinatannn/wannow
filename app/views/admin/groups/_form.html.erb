@@ -1,0 +1,32 @@
+
+<%= form_with model: [:admin, @group], class: "admin-form" do |f| %>
+  <% if @group.errors.any? %>
+    <div class="admin-form-errors">
+      <p>入力内容を確認してください。</p>
+      <ul>
+        <% @group.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="admin-form-field">
+    <%= f.label :name, "グループ名" %>
+    <%= f.text_field :name, required: true %>
+  </div>
+
+  <div class="admin-form-field">
+    <%= f.label :description, "説明" %>
+    <%= f.text_area :description, rows: 5 %>
+  </div>
+
+  <div class="admin-form-actions">
+    <%= f.submit(@group.persisted? ? "変更を保存" : "グループを作成",
+                 class: "admin-primary-button") %>
+
+    <%= link_to "キャンセル",
+                (@group.persisted? ? admin_group_path(@group) : admin_groups_path),
+                class: "admin-cancel-button" %>
+  </div>
+<% end %>
