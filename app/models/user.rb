@@ -1,4 +1,7 @@
+
 class User < ApplicationRecord
+  GUEST_EMAIL = "guest@wannow.example".freeze
+
   has_secure_password
   has_many :sessions, dependent: :destroy
   has_many :dogs, dependent: :destroy
@@ -15,4 +18,9 @@ class User < ApplicationRecord
 
   # メールアドレスを必須にし、重複登録を防ぐ
   validates :email_address, presence: true, uniqueness: true
+
+  # ゲストユーザーかどうか判定する
+  def guest?
+    email_address == GUEST_EMAIL
+  end
 end

@@ -1,4 +1,6 @@
 class DogsController < ApplicationController
+  before_action :reject_guest, only: %i[new create edit update destroy]
+
   def new
     @dog = Dog.new
   end
@@ -38,6 +40,12 @@ def destroy
 end
 
   private
+
+def reject_guest
+  if Current.user.guest?
+    redirect_to mypage_path, alert: "ゲストユーザーは愛犬プロフィールを変更できません。"
+  end
+end
 
   def dog_params
     params.require(:dog).permit(:name, :breed, :personality)
