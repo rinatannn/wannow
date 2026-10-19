@@ -919,3 +919,213 @@ header nav {
     justify-content: flex-start;
   }
 }
+
+
+/* =====================================
+   WAN NOW トップページ
+   ナチュラル＆かわいいデザイン
+===================================== */
+
+.wannow-home {
+  background: #fafbf7;
+  color: #40554a;
+  min-height: 100vh;
+}
+
+/* メインエリア */
+.wannow-hero {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 90px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.wannow-hero-content {
+  flex: 1;
+}
+
+.wannow-hero-label {
+  display: inline-block;
+  background: #e5f0e4;
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+.wannow-hero h1 {
+  font-size: 58px;
+  letter-spacing: 5px;
+  color: #52745c;
+  margin-bottom: 12px;
+}
+
+.wannow-hero h2 {
+  font-size: 28px;
+  margin-bottom: 24px;
+}
+
+.wannow-hero p {
+  font-size: 16px;
+  line-height: 2;
+  margin-bottom: 30px;
+}
+
+/* メインボタン */
+.wannow-main-button {
+  display: inline-block;
+  background: #7fa68a;
+  color: white;
+  padding: 16px 30px;
+  border-radius: 35px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.wannow-main-button:hover {
+  background: #648b70;
+}
+
+/* 犬の装飾 */
+.wannow-hero-decoration {
+  flex: 1;
+  text-align: center;
+}
+
+.wannow-paw-circle {
+  width: 250px;
+  height: 250px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: #e7f0df;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 110px;
+  box-shadow: 0 15px 35px rgba(95, 125, 98, 0.12);
+}
+
+.wannow-hero-decoration p {
+  color: #78917d;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+/* 機能紹介 */
+.wannow-features {
+  background: #f0f5ed;
+  padding: 80px 30px;
+}
+
+.wannow-section-heading {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.wannow-section-heading span {
+  color: #7a9b80;
+  font-size: 13px;
+  letter-spacing: 3px;
+}
+
+.wannow-section-heading h2 {
+  font-size: 30px;
+  margin: 15px 0;
+}
+
+.wannow-section-heading p {
+  color: #78877c;
+}
+
+/* カード */
+.wannow-feature-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.wannow-feature-card {
+  background: white;
+  padding: 35px 25px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(70, 100, 75, 0.07);
+}
+
+.wannow-feature-icon {
+  font-size: 45px;
+  margin-bottom: 20px;
+}
+
+.wannow-feature-card h3 {
+  font-size: 19px;
+  margin-bottom: 15px;
+}
+
+.wannow-feature-card p {
+  color: #78877c;
+  line-height: 1.8;
+  min-height: 85px;
+}
+
+.wannow-feature-card a {
+  color: #648b70;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* 下部メッセージ */
+.wannow-bottom-message {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.wannow-bottom-message span {
+  font-size: 36px;
+}
+
+.wannow-bottom-message h2 {
+  font-size: 23px;
+  margin: 20px 0;
+}
+
+.wannow-bottom-message p {
+  color: #829488;
+}
+
+/* スマートフォン対応 */
+@media (max-width: 768px) {
+  .wannow-hero {
+    flex-direction: column;
+    padding: 50px 20px;
+    text-align: center;
+  }
+
+  .wannow-hero h1 {
+    font-size: 40px;
+  }
+
+  .wannow-hero h2 {
+    font-size: 23px;
+  }
+
+  .wannow-paw-circle {
+    width: 180px;
+    height: 180px;
+    font-size: 80px;
+  }
+
+  .wannow-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wannow-features {
+    padding: 50px 20px;
+  }
+}
