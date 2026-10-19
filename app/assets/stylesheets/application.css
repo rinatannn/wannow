@@ -864,3 +864,58 @@ header nav > a:first-child {
   color: #ffffff;
   text-decoration: none;
 }
+
+
+/* ===== ヘッダーのボタンデザイン ===== */
+
+header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.nav-links a,
+.nav-links button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 8px 12px;
+  border: 1px solid #c9d9d5;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #304b45;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.nav-links a:hover,
+.nav-links button:hover {
+  background-color: #e5f1ed;
+  border-color: #8fb8aa;
+}
+
+.nav-links form {
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .nav-links {
+    justify-content: flex-start;
+  }
+}
