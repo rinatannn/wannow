@@ -34,19 +34,19 @@
         <div class="nav-links">
           <%= link_to "Top", root_path %>
           <%= link_to "About", about_path %>
-
-          <%# ドッグラン一覧へのリンク %>
           <%= link_to "ドッグラン一覧", dog_runs_path %>
+          <%= link_to "投稿一覧", posts_path %>
+          <%= link_to "グループ一覧", groups_path %>
+          <%= link_to "カレンダー", visit_plans_path %>
 
           <%# ログイン状態によって表示するリンクを切り替える %>
           <% if authenticated? %>
-            <%# ログイン中はマイページへのリンクを表示 %>
+            <%= link_to "愛犬登録", new_dog_path %>
             <%= link_to "マイページ", mypage_path %>
 
             <%# ログアウト %>
             <%= button_to "Sign out", session_path, method: :delete %>
           <% else %>
-            <%# 未ログイン時は新規登録・ログインを表示 %>
             <%= link_to "新規登録", new_user_path %>
             <%= link_to "Sign in", new_session_path %>
           <% end %>
