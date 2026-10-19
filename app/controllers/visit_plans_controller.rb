@@ -3,13 +3,17 @@ class VisitPlansController < ApplicationController
   before_action :require_authentication, only: %i[create destroy]
   before_action :reject_guest, only: %i[create destroy]
 
-  # 来場予定一覧
-  def index
-    @visit_plans = VisitPlan
-      .includes(:dog, :dog_run)
-      .where("planned_at >= ?", Time.current)
-      .order(:planned_at)
+# 来場予定一覧・カレンダー表示
+def index
+  @visit_plans = VisitPlan
+    .includes(:dog, :dog_run)
+    .where("planned_at >= ?", Time.current)
+    .order(:planned_at)
+
+  @calendar_plans = @visit_plans.group_by do |visit_plan|
+    visit_plan.planned_at.to_date
   end
+end
 
   # 来場予定を登録
   def create

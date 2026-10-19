@@ -67,6 +67,9 @@ end
 
 gem "dotenv-rails"
 
+# 来場予定のカレンダー表示
+gem "simple_calendar"
+
 group :production do
   gem "mysql2"
 end
