@@ -552,3 +552,293 @@ header nav > a:first-child {
     font-size: 24px;
   }
 }
+
+/* ========================================
+   ドッグラン詳細ページ
+======================================== */
+
+.dog-run-show {
+  max-width: 1000px;
+  margin: 40px auto 64px;
+  padding: 0 24px;
+}
+
+.dog-run-info-card {
+  background: #ffffff;
+  border: 1px solid #dcebe5;
+  border-radius: 20px;
+  padding: 40px 32px;
+  box-shadow: 0 8px 24px rgba(53, 94, 82, 0.08);
+  text-align: center;
+}
+
+.dog-run-info-card h1 {
+  font-size: 30px;
+  font-weight: 700;
+  color: #355e52;
+  margin-bottom: 28px;
+}
+
+.dog-run-info-card p {
+  font-size: 17px;
+  line-height: 1.9;
+  color: #52665f;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 600px) {
+  .dog-run-show {
+    margin: 28px auto 40px;
+    padding: 0 16px;
+  }
+
+  .dog-run-info-card {
+    padding: 28px 20px;
+  }
+
+  .dog-run-info-card h1 {
+    font-size: 24px;
+  }
+}
+
+/* ========================================
+   ドッグラン詳細：現在の利用状況
+======================================== */
+
+.dog-run-status-card {
+  max-width: 850px;
+  margin: 32px auto;
+  padding: 32px 24px;
+  background: #ffffff;
+  border: 1px solid #dcebe5;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(53, 94, 82, 0.08);
+  text-align: center;
+}
+
+.dog-run-status-card h2 {
+  font-size: 24px;
+  color: #355e52;
+  margin-bottom: 20px;
+}
+
+.dog-run-status-label {
+  font-size: 17px;
+  color: #52665f;
+  margin-bottom: 8px;
+}
+
+.dog-run-status-count {
+  font-size: 48px;
+  font-weight: 700;
+  color: #397c69;
+}
+
+.dog-run-status-count span {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+/* ========================================
+   ドッグラン詳細：チェックイン
+======================================== */
+
+.dog-run-checkin-card {
+  max-width: 850px;
+  margin: 32px auto;
+  padding: 36px 32px;
+  background: #ffffff;
+  border: 1px solid #dcebe5;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(53, 94, 82, 0.08);
+  text-align: center;
+}
+
+.dog-run-checkin-card h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #355e52;
+  margin-bottom: 24px;
+}
+
+.dog-run-checkin-card p {
+  font-size: 16px;
+  color: #52665f;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.dog-run-checkin-card select {
+  padding: 10px 14px;
+  border: 1px solid #c8ddd3;
+  border-radius: 8px;
+  font-size: 16px;
+  background: #ffffff;
+  margin: 8px;
+}
+
+.dog-run-checkin-card input[type="submit"],
+.dog-run-checkin-card button {
+  background: #397c69;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+.dog-run-checkin-card input[type="submit"]:hover,
+.dog-run-checkin-card button:hover {
+  background: #2c6253;
+}
+
+@media (max-width: 600px) {
+  .dog-run-checkin-card {
+    padding: 28px 16px;
+  }
+}
+
+/* ========================================
+   ドッグラン詳細：来場予定登録
+======================================== */
+
+.dog-run-reservation-card {
+  max-width: 850px;
+  margin: 32px auto;
+  padding: 36px 32px;
+  background: #ffffff;
+  border: 1px solid #dcebe5;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(53, 94, 82, 0.08);
+  text-align: center;
+}
+
+.dog-run-reservation-card h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #355e52;
+  margin-bottom: 24px;
+}
+
+.dog-run-reservation-card p {
+  font-size: 16px;
+  color: #52665f;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.dog-run-reservation-card select,
+.dog-run-reservation-card input[type="datetime-local"] {
+  padding: 10px 14px;
+  border: 1px solid #c8ddd3;
+  border-radius: 8px;
+  font-size: 16px;
+  background: #ffffff;
+  margin: 8px;
+}
+
+.dog-run-reservation-card input[type="submit"] {
+  background: #397c69;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+.dog-run-reservation-card input[type="submit"]:hover {
+  background: #2c6253;
+}
+
+@media (max-width: 600px) {
+  .dog-run-reservation-card {
+    padding: 28px 16px;
+  }
+}
+
+/* ========================================
+   ドッグラン詳細：来場予定一覧
+======================================== */
+
+.dog-run-plans-card {
+  max-width: 850px;
+  margin: 32px auto;
+  padding: 36px 32px;
+  background: #ffffff;
+  border: 1px solid #dcebe5;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(53, 94, 82, 0.08);
+  text-align: center;
+}
+
+.dog-run-plans-card h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #355e52;
+  margin-bottom: 24px;
+}
+
+.dog-run-plans-card p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #52665f;
+  margin-bottom: 16px;
+}
+
+.dog-run-plans-card input[type="submit"] {
+  background: #397c69;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.dog-run-plans-card input[type="submit"]:hover {
+  background: #2c6253;
+}
+
+@media (max-width: 600px) {
+  .dog-run-plans-card {
+    padding: 28px 16px;
+  }
+
+  .dog-run-plans-card h2 {
+    font-size: 21px;
+  }
+}
+
+/* ========================================
+   ドッグラン詳細：一覧に戻るボタン
+======================================== */
+
+.dog-run-back-area {
+  text-align: center;
+  margin: 40px auto 64px;
+  padding: 0 16px;
+}
+
+.dog-run-back-link {
+  display: inline-block;
+  padding: 14px 28px;
+  background: #397c69;
+  color: #ffffff !important;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.dog-run-back-link:hover {
+  background: #2c6253;
+  color: #ffffff;
+  text-decoration: none;
+}

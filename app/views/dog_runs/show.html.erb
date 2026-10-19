@@ -1,4 +1,6 @@
-<h1><%= @dog_run.name %></h1>
+<div class="dog-run-show">
+  <section class="dog-run-info-card">
+    <h1><%= @dog_run.name %></h1>
 
 <p>住所：<%= @dog_run.address %></p>
 
@@ -10,19 +12,24 @@
 
 <p>室内：<%= @dog_run.indoor? ? "あり" : "なし" %></p>
 
-<p>緯度：<%= @dog_run.latitude %></p>
-<p>経度：<%= @dog_run.longitude %></p>
+  </section>
+</div>
 
-<h2>現在の利用状況</h2>
+<section class="dog-run-status-card">
+  <h2>🐶 現在の利用状況</h2>
 
-<p>
-  現在の利用頭数：
-  <%= @dog_run.check_ins.where(checked_out_at: nil).count %> 頭
-</p>
+  <p class="dog-run-status-label">現在の利用頭数</p>
+
+  <p class="dog-run-status-count">
+    <%= @dog_run.check_ins.where(checked_out_at: nil).count %>
+    <span>頭</span>
+  </p>
+</section>
 
 <hr>
 
-<h2>チェックイン</h2>
+<section class="dog-run-checkin-card">
+  <h2>🐾 チェックイン</h2>
 
 <% if authenticated? %>
   <% dogs = Current.user.dogs %>
@@ -60,10 +67,12 @@
 <% else %>
   <p>チェックインするにはログインが必要です。</p>
 <% end %>
+</section>
 
 <hr>
 
-<h2>来場予定を登録する</h2>
+<section class="dog-run-reservation-card">
+  <h2>📅 来場予定を登録する</h2>
 
 <% if authenticated? %>
   <% if Current.user.dogs.any? %>
@@ -89,10 +98,12 @@
 <% else %>
   <p>来場予定を登録するにはログインが必要です。</p>
 <% end %>
+</section>
 
 <hr>
 
-<h2>このドッグランの来場予定</h2>
+<section class="dog-run-plans-card">
+  <h2>📅 このドッグランの来場予定</h2>
 
 <% visit_plans = @dog_run.visit_plans
                           .includes(:dog)
@@ -115,5 +126,10 @@
 <% else %>
   <p>現在、来場予定はありません。</p>
 <% end %>
+</section>
 
-<%= link_to "ドッグラン一覧に戻る", dog_runs_path %>
+<div class="dog-run-back-area">
+  <%= link_to "← ドッグラン一覧に戻る",
+              dog_runs_path,
+              class: "dog-run-back-link" %>
+</div>
