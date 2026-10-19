@@ -3,7 +3,7 @@ class VisitPlansController < ApplicationController
   before_action :require_authentication, only: %i[create destroy]
   before_action :reject_guest, only: %i[create destroy]
 
-  # 来場予定一覧・カレンダー表示
+# 来場予定一覧・カレンダー表示
 def index
   @visit_plans = VisitPlan
     .includes(:dog, :dog_run)
