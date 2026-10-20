@@ -1,6 +1,18 @@
 <h1>愛犬プロフィール登録</h1>
 
 <%= form_with model: @dog do |f| %>
+
+  <% if @dog.errors.any? %>
+    <div class="alert alert-danger">
+      <p>入力内容を確認してください。</p>
+      <ul>
+        <% @dog.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div>
     <%= f.label :name, "愛犬の名前" %>
     <%= f.text_field :name %>
@@ -19,4 +31,5 @@
   <div>
     <%= f.submit "登録する" %>
   </div>
+
 <% end %>

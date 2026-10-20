@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    models:
+      dog: "愛犬"
+      post: "投稿"
+    attributes:
+      dog:
+        name: "愛犬の名前"
+        breed: "犬種"
+        personality: "性格"
+      post:
+        title: "タイトル"
+        body: "本文"

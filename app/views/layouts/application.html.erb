@@ -56,7 +56,19 @@
 
     <%# 各ページ固有の内容を表示 %>
     <main>
-      <%= yield %>
-    </main>
+  <% if flash[:notice].present? %>
+    <div class="flash-message flash-notice" role="status">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+  <% if flash[:alert].present? %>
+    <div class="flash-message flash-alert" role="alert">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
+  <%= yield %>
+</main>
   </body>
 </html>

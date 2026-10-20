@@ -11,6 +11,9 @@ module Wannow
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.0
 
+    # 日本語をデフォルト言語に設定
+    config.i18n.default_locale = :ja
+
     # Solid Cacheの設定を無効化
     config.active_support.use_solid_cache = false
 
