@@ -3,8 +3,8 @@
 <div class="wannow-home">
 
   <%# メインエリア %>
-  <section class="wannow-hero">
-    <div class="wannow-hero-content">
+  <section class="wannow-hero row align-items-center">
+  <div class="wannow-hero-content col-12 col-md-6">
       <div class="wannow-hero-label">🐾 愛犬とのお出かけをもっと楽しく</div>
 
       <h1>WAN NOW</h1>
@@ -19,10 +19,7 @@
       <%= link_to "🐾 ドッグランを探す", dog_runs_path, class: "wannow-main-button" %>
     </div>
 
-    <div class="wannow-hero-decoration">
-      <div class="wannow-paw-circle">🐶</div>
-      <p>Happy time with your dog!</p>
-    </div>
+    <%= image_tag "christina0chiz-dog-5964181_1280.jpg", class: "wannow-paw-circle" %>
   </section>
 
   <%# 機能紹介 %>
@@ -33,26 +30,39 @@
       <p>愛犬との毎日を、もっと楽しく、もっと便利に。</p>
     </div>
 
-    <div class="wannow-feature-grid">
-      <div class="wannow-feature-card">
-        <div class="wannow-feature-icon">🌳</div>
-        <h3>ドッグランを探す</h3>
-        <p>気になるドッグランを探して、利用状況をチェック。</p>
-        <%= link_to "詳しく見る →", dog_runs_path %>
-      </div>
+        <div class="wannow-feature-grid container">
+      <div class="row g-4">
 
-      <div class="wannow-feature-card">
-        <div class="wannow-feature-icon">📅</div>
-        <h3>来場予定をチェック</h3>
-        <p>カレンダーから来場予定を確認して、お出かけの参考に。</p>
-        <%= link_to "予定を見る →", visit_plans_path %>
-      </div>
+        <%# ドッグラン検索 %>
+        <div class="col-12 col-md-4">
+          <div class="wannow-feature-card h-100">
+            <div class="wannow-feature-icon">🌳</div>
+            <h3>ドッグランを探す</h3>
+            <p>気になるドッグランを探して、利用状況をチェック。</p>
+            <%= link_to "詳しく見る →", dog_runs_path %>
+          </div>
+        </div>
 
-      <div class="wannow-feature-card">
-        <div class="wannow-feature-icon">🐕</div>
-        <h3>飼い主同士で交流</h3>
-        <p>投稿やグループを通じて、愛犬との楽しみを共有。</p>
-        <%= link_to "投稿を見る →", posts_path %>
+        <%# 来場予定 %>
+        <div class="col-12 col-md-4">
+          <div class="wannow-feature-card h-100">
+            <div class="wannow-feature-icon">📅</div>
+            <h3>来場予定をチェック</h3>
+            <p>カレンダーで来場予定を確認して、お出かけの参考に。</p>
+            <%= link_to "予定を見る →", visit_plans_path %>
+          </div>
+        </div>
+
+        <%# 飼い主同士の交流 %>
+        <div class="col-12 col-md-4">
+          <div class="wannow-feature-card h-100">
+            <div class="wannow-feature-icon">🐕</div>
+            <h3>飼い主同士で交流</h3>
+            <p>投稿やグループを通じて、愛犬との楽しみを共有。</p>
+            <%= link_to "投稿を見る →", posts_path %>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
