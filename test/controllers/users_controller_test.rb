@@ -134,4 +134,71 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   assert_response :success
   assert_select "a[href='#{user_path(guest)}']", count: 0
 end
+
+  test "他人のIDを指定しても退会できないこと" do
+    user = users(:two)
+    other_user = User.create!(
+      name: "別のユーザー",
+      email_address: "other-delete-test@example.com",
+      password: "password123"
+    )
+
+    # 通常ユーザーとしてログイン
+    post session_path, params: {
+      email_address: user.email_address,
+      password: "password"
+    }
+
+    # 他人のIDを指定して退会を試みる
+    assert_no_difference("User.count") do
+      delete user_path(other_user)
+    end
+
+    assert_redirected_to mypage_path
+
+    # 本人も相手も削除されていないことを確認
+    assert User.exists?(id: user.id)
+    assert User.exists?(id: other_user.id)
+  end
+
+    test "他人のプロフィールでは個人情報と編集・退会ボタンを表示しないこと" do
+    user = users(:two)
+
+    other_user = User.create!(
+      name: "プロフィール確認ユーザー",
+      email_address: "profile-check@example.com",
+      password: "password123"
+    )
+
+    post session_path, params: {
+      email_address: user.email_address,
+      password: "password"
+    }
+
+    get user_path(other_user)
+
+    assert_response :success
+    assert_select "h1", text: "ユーザープロフィール"
+    assert_select "body", text: /プロフィール確認ユーザー/
+    assert_select "body", text: /profile-check@example.com/, count: 0
+    assert_select "a[href='#{edit_user_path(other_user)}']", count: 0
+    assert_select "form[action='#{user_path(other_user)}'][method='post']", count: 0
+  end
+
+    test "自分のプロフィールでは会員情報と編集・退会ボタンを表示すること" do
+    user = users(:two)
+
+    post session_path, params: {
+      email_address: user.email_address,
+      password: "password"
+    }
+
+    get user_path(user)
+
+    assert_response :success
+    assert_select "h1", text: "マイページ"
+    assert_select "body", text: /#{Regexp.escape(user.email_address)}/
+    assert_select "a[href='#{edit_user_path(user)}']", text: "会員情報を編集する"
+    assert_select "form[action='#{user_path(user)}'][method='post']", count: 1
+  end
 end
