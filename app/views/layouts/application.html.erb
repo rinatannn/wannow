@@ -54,6 +54,20 @@
       </nav>
     </header>
 
+        <% if authenticated? %>
+      <div class="header-search">
+        <%= form_with url: users_path, method: :get, local: true do |f| %>
+          <%= f.text_field :keyword, placeholder: "ユーザー名を検索" %>
+          <%= f.submit "ユーザー検索" %>
+        <% end %>
+
+        <%= form_with url: posts_path, method: :get, local: true do |f| %>
+          <%= f.text_field :keyword, placeholder: "投稿を検索" %>
+          <%= f.submit "投稿検索" %>
+        <% end %>
+      </div>
+    <% end %>
+
     <%# 各ページ固有の内容を表示 %>
     <main>
   <% if flash[:notice].present? %>

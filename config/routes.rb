@@ -34,7 +34,7 @@ end
   resources :passwords, param: :token
 
   # ユーザー新規登録・管理
-  resources :users, only: [ :new, :create, :show, :edit, :update, :destroy ]
+  resources :users, only: [ :index, :new, :create, :show, :edit, :update, :destroy ]
 
   # 犬プロフィール
   resources :dogs, only: [ :new, :create, :show, :edit, :update, :destroy ]
