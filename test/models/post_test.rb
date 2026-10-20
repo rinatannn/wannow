@@ -19,13 +19,13 @@ class PostTest < ActiveSupport::TestCase
     post = @user.posts.build(title: "", body: "ドッグランに行きました")
 
     assert_not post.valid?
-    assert_includes post.errors[:title], "can't be blank"
+    assert_includes post.errors[:title], "を入力してください"
   end
 
   test "本文が空欄の場合は投稿できない" do
     post = @user.posts.build(title: "初めての投稿", body: "")
 
     assert_not post.valid?
-    assert_includes post.errors[:body], "can't be blank"
+    assert_includes post.errors[:body], "を入力してください"
   end
 end
