@@ -2,6 +2,17 @@
 class UsersController < ApplicationController
   allow_unauthenticated_access only: %i[new create]
 
+# ユーザー一覧・名前検索
+def index
+  @users = User.where(admin: false, is_active: true)
+             .where.not(email_address: User::GUEST_EMAIL)
+             .order(:name)
+  if params[:keyword].present?
+    keyword = "%#{User.sanitize_sql_like(params[:keyword])}%"
+    @users = @users.where("name LIKE ?", keyword)
+  end
+end
+
   # 新規登録画面を表示
   def new
     @user = User.new
