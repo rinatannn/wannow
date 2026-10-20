@@ -1145,3 +1145,26 @@ header nav {
 .post-new-button:hover {
   background-color: #286b5d;
 }
+
+/* フラッシュメッセージ共通 */
+.flash-message {
+  padding: 14px 20px;
+  margin: 20px auto;
+  max-width: 900px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+/* 成功メッセージ */
+.flash-notice {
+  background-color: #e3f3e9;
+  color: #256b45;
+  border: 1px solid #92c9a5;
+}
+
+/* エラーメッセージ */
+.flash-alert {
+  background-color: #fde8e8;
+  color: #b42318;
+  border: 1px solid #e8a2a2;
+}
