@@ -89,20 +89,26 @@ end
     end
   end
 
-  # 会員を退会
-  def destroy
-    @user = Current.user
+# 会員を退会
+def destroy
+  @user = Current.user
 
-    # ゲストユーザーは退会できない
-    if @user.guest?
-      redirect_to mypage_path, alert: "ゲストユーザーは退会できません。"
-      return
-    end
-
-    @user.destroy
-    reset_session
-    redirect_to new_user_path
+  # 他のユーザーのIDでは退会できない
+  if params[:id].to_i != @user.id
+    redirect_to mypage_path, alert: "他のユーザーの退会操作はできません。"
+    return
   end
+
+  # ゲストユーザーは退会できない
+  if @user.guest?
+    redirect_to mypage_path, alert: "ゲストユーザーは退会できません。"
+    return
+  end
+
+  @user.destroy
+  reset_session
+  redirect_to new_user_path
+end
 
   private
 

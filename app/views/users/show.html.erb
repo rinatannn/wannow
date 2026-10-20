@@ -1,19 +1,24 @@
-<%# マイページ %>
+<%# ユーザープロフィール %>
 <div class="user-page-container">
-  <h1>マイページ</h1>
+  <% if Current.user == @user %>
+    <h1>マイページ</h1>
+  <% else %>
+    <h1>ユーザープロフィール</h1>
+  <% end %>
 
   <p>
     <strong>氏名：</strong>
     <%= @user.name %>
   </p>
 
-  <p>
-    <strong>メールアドレス：</strong>
-    <%= @user.email_address %>
-  </p>
+  <% if Current.user == @user %>
+    <p>
+      <strong>メールアドレス：</strong>
+      <%= @user.email_address %>
+    </p>
 
-  <%= link_to "会員情報を編集する", edit_user_path(@user) %>
+    <%= link_to "会員情報を編集する", edit_user_path(@user) %>
 
-  <%= button_to "退会する", user_path(@user), method: :delete %>
-
+    <%= button_to "退会する", user_path(@user), method: :delete %>
+  <% end %>
 </div>
