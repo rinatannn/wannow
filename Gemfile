@@ -18,7 +18,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 # Railsとの互換性を保つためJSONのバージョンを3.0未満に固定
-gem "json", "< 3.0"
+gem "json", "< 4.0"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem "bcrypt", "~> 3.1.7"
