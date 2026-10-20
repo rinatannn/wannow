@@ -3,9 +3,31 @@
 <h2>ドッグランを探す 🔍</h2>
 
 <%= form_with url: dog_runs_path, method: :get do |f| %>
-  <%= f.text_field :keyword,
-        value: params[:keyword],
-        placeholder: "ドッグラン名・住所で検索" %>
+  <div>
+    <%= f.label :keyword, "キーワード" %>
+    <%= f.text_field :keyword,
+          value: params[:keyword],
+          placeholder: "ドッグラン名・住所で検索" %>
+  </div>
+
+  <div>
+    <%= f.label :prefecture, "都道府県" %>
+    <%= f.select :prefecture,
+          options_for_select(
+            ["福岡県", "佐賀県", "熊本県"],
+            params[:prefecture]
+          ),
+          { include_blank: "すべての地域" } %>
+  </div>
+
+  <div>
+    <%= f.label :indoor, "施設タイプ" %>
+    <%= f.select :indoor,
+          options_for_select(
+            [["すべて", ""], ["屋内", "true"], ["屋外", "false"]],
+            params[:indoor]
+          ) %>
+  </div>
 
   <%= f.submit "検索" %>
 <% end %>
@@ -34,7 +56,7 @@
     </div>
   <% end %>
 <% else %>
-  <% if params[:keyword].present? %>
+  <% if params[:keyword].present? || params[:prefecture].present? || params[:indoor].present? %>
     <p>検索条件に一致するドッグランが見つかりませんでした。</p>
   <% else %>
     <p>ドッグランはまだ登録されていません。</p>
