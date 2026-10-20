@@ -406,8 +406,11 @@ header nav > a:first-child {
   vertical-align: top;
 }
 
+/* 今日の日付を強調 */
 .simple-calendar .today {
-  background: #fff6dc;
+  background-color: #d9f0e5;
+  outline: 3px solid #368b78;
+  outline-offset: -3px;
 }
 
 .simple-calendar .prev-month,
