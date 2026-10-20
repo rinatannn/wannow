@@ -1129,3 +1129,19 @@ header nav {
     padding: 50px 20px;
   }
 }
+
+/* 投稿一覧の新規投稿ボタン */
+.post-new-button {
+  display: inline-block;
+  background-color: #368b78;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.post-new-button:hover {
+  background-color: #286b5d;
+}
