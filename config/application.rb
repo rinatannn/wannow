@@ -14,6 +14,9 @@ module Wannow
     # 日本語をデフォルト言語に設定
     config.i18n.default_locale = :ja
 
+    # 日本時間を設定
+    config.time_zone = "Tokyo"
+
     # Solid Cacheの設定を無効化
     config.active_support.use_solid_cache = false
 
