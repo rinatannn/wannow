@@ -1,0 +1,27 @@
+<h1>グループ新規作成</h1>
+
+<%= form_with model: @group do |f| %>
+  <% if @group.errors.any? %>
+    <ul>
+      <% @group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= f.label :name, "グループ名" %>
+    <%= f.text_field :name, required: true %>
+  </div>
+
+  <div>
+    <%= f.label :description, "グループの説明・ルール" %>
+    <%= f.text_area :description, rows: 5 %>
+  </div>
+
+  <div>
+    <%= f.submit "グループを作成する" %>
+  </div>
+<% end %>
+
+<%= link_to "グループ一覧に戻る", groups_path %>

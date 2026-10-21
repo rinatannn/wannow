@@ -9,7 +9,7 @@ class GroupMembershipsController < ApplicationController
     membership = Current.user.group_memberships.new(group: @group)
 
     if membership.save
-      redirect_to group_path(@group), notice: "グループに参加しました"
+      redirect_to group_path(@group), notice: "参加申請を送信しました"
     else
       redirect_to group_path(@group), alert: "すでに参加しているグループです"
     end

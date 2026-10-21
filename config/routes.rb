@@ -14,11 +14,16 @@ end
    resources :comments, only: [ :create, :destroy ]
   end
 
-  # グループ一覧・詳細・参加・退会
-  resources :groups, only: [ :index, :show ] do
-    resource :group_membership, only: [ :create, :destroy ]
-  end
+  # グループ一覧・詳細・新規作成・参加申請
+  resources :groups, only: [ :index, :show, :new, :create ] do
+  resource :group_membership, only: [ :create, :destroy ]
 
+
+  resources :group_memberships, only: [] do
+    patch :approve, on: :member
+    patch :reject, on: :member
+  end
+end
   # ドッグラン一覧・詳細
   resources :dog_runs, only: [ :index, :show ]
 

@@ -4,15 +4,22 @@
   <p><%= @group.description %></p>
 
   <% if authenticated? %>
-    <% if Current.user.groups.exists?(@group.id) %>
+    <% membership = Current.user.group_memberships.find_by(group: @group) %>
+
+    <% if membership&.approved? %>
       <%= button_to "グループから退会する",
                     group_group_membership_path(@group),
                     method: :delete %>
+
+    <% elsif membership&.pending? %>
+      <p>参加申請中（承認待ち）</p>
+
     <% else %>
-      <%= button_to "グループに参加する",
+      <%= button_to "参加申請する",
                     group_group_membership_path(@group),
                     method: :post %>
     <% end %>
+
   <% else %>
     <p>グループに参加するにはログインが必要です。</p>
     <%= link_to "ログインする", new_session_path %>
