@@ -13,3 +13,10 @@ two:
   password_digest: <%= password_digest %>
   admin: false
   is_active: true
+
+three:
+  name: テストユーザー3
+  email_address: three@example.com
+  password_digest: <%= password_digest %>
+  admin: false
+  is_active: true
