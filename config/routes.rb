@@ -6,6 +6,7 @@ namespace :admin do
   resources :groups
   resources :users, only: [ :index, :show ] do
     patch :suspend, on: :member
+    patch :reactivate, on: :member
   end
 end
 

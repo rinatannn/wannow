@@ -33,10 +33,18 @@
 
 <%= link_to "ユーザー一覧に戻る", admin_users_path %>
 
-<% if @user.is_active? && !@user.admin? && !@user.guest? %>
-  <%= button_to "このユーザーを利用停止にする",
-                suspend_admin_user_path(@user),
-                method: :patch,
-                data: { turbo_confirm: "本当にこのユーザーを利用停止にしますか？" },
-                class: "btn btn-danger" %>
+<% unless @user.admin? || @user.guest? %>
+  <% if @user.is_active? %>
+    <%= button_to "このユーザーを利用停止にする",
+                  suspend_admin_user_path(@user),
+                  method: :patch,
+                  data: { turbo_confirm: "本当にこのユーザーを利用停止にしますか？" },
+                  class: "btn btn-danger" %>
+  <% else %>
+    <%= button_to "このユーザーの利用を再開する",
+                  reactivate_admin_user_path(@user),
+                  method: :patch,
+                  data: { turbo_confirm: "このユーザーの利用を再開しますか？" },
+                  class: "btn btn-success" %>
+  <% end %>
 <% end %>
