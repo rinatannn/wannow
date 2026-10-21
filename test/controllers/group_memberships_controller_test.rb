@@ -90,4 +90,118 @@ class GroupMembershipsControllerTest < ActionDispatch::IntegrationTest
     # 既存の参加情報が残っていることを確認
     assert GroupMembership.exists?(user: users(:one), group: group)
   end
+
+    test "グループ作成者以外は参加申請を承認できない" do
+    owner = users(:one)
+    other_user = users(:two)
+
+    group = Group.create!(
+      name: "権限テスト用グループ",
+      description: "承認権限を確認する",
+      user: owner
+    )
+
+    membership = GroupMembership.create!(
+      user: other_user,
+      group: group,
+      status: :pending
+    )
+
+    post session_url, params: {
+      email_address: other_user.email_address,
+      password: "password"
+    }
+
+    patch approve_group_group_membership_url(group, membership)
+
+    assert_redirected_to group_url(group)
+    assert_equal "承認する権限がありません", flash[:alert]
+    assert membership.reload.pending?
+  end
+
+    test "グループ作成者以外は参加申請を拒否できない" do
+    owner = users(:one)
+    other_user = users(:two)
+
+    group = Group.create!(
+      name: "拒否権限テスト用グループ",
+      description: "拒否権限を確認する",
+      user: owner
+    )
+
+    membership = GroupMembership.create!(
+      user: other_user,
+      group: group,
+      status: :pending
+    )
+
+    post session_url, params: {
+      email_address: other_user.email_address,
+      password: "password"
+    }
+
+    patch reject_group_group_membership_url(group, membership)
+
+    assert_redirected_to group_url(group)
+    assert_equal "拒否する権限がありません", flash[:alert]
+    assert membership.reload.pending?
+  end
+
+    test "第三者は参加申請を承認できない" do
+    owner = users(:one)
+    applicant = users(:two)
+    third_user = users(:three)
+
+    group = Group.create!(
+      name: "第三者権限テスト",
+      description: "第三者による承認を禁止する",
+      user: owner
+    )
+
+    membership = GroupMembership.create!(
+      user: applicant,
+      group: group,
+      status: :pending
+    )
+
+    post session_url, params: {
+      email_address: third_user.email_address,
+      password: "password"
+    }
+
+    patch approve_group_group_membership_url(group, membership)
+
+    assert_redirected_to group_url(group)
+    assert_equal "承認する権限がありません", flash[:alert]
+    assert membership.reload.pending?
+  end
+
+    test "第三者は参加申請を拒否できない" do
+    owner = users(:one)
+    applicant = users(:two)
+    third_user = users(:three)
+
+    group = Group.create!(
+      name: "第三者拒否権限テスト",
+      description: "第三者による拒否を禁止する",
+      user: owner
+    )
+
+    membership = GroupMembership.create!(
+      user: applicant,
+      group: group,
+      status: :pending
+    )
+
+    post session_url, params: {
+      email_address: third_user.email_address,
+      password: "password"
+    }
+
+    patch reject_group_group_membership_url(group, membership)
+
+    assert_redirected_to group_url(group)
+    assert_equal "拒否する権限がありません", flash[:alert]
+    assert membership.reload.pending?
+  end
 end
