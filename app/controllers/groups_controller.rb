@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   allow_unauthenticated_access only: [ :index, :show ]
+  before_action :resume_session, only: [ :index, :show ]
 
   def index
     @groups = Group.all
@@ -7,6 +8,10 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+
+    if Current.user && @group.user_id == Current.user.id
+      @pending_memberships = @group.group_memberships.pending.includes(:user)
+    end
   end
 
   def new
@@ -25,7 +30,7 @@ class GroupsController < ApplicationController
 
   private
 
-def group_params
-  params.require(:group).permit(:name, :description)
-end
+  def group_params
+    params.require(:group).permit(:name, :description)
+  end
 end
