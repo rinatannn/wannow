@@ -4,19 +4,52 @@
   <p><%= @group.description %></p>
 
   <% if authenticated? %>
-    <% if Current.user.groups.exists?(@group.id) %>
+  <% if @group.user_id == Current.user.id %>
+  <p>あなたが作成したグループです。</p>
+<% else %>
+    <% membership = Current.user.group_memberships.find_by(group: @group) %>
+
+    <% if membership&.approved? %>
       <%= button_to "グループから退会する",
                     group_group_membership_path(@group),
                     method: :delete %>
+
+    <% elsif membership&.pending? %>
+      <p>参加申請中（承認待ち）</p>
+
     <% else %>
-      <%= button_to "グループに参加する",
+      <%= button_to "参加申請する",
                     group_group_membership_path(@group),
                     method: :post %>
     <% end %>
+<% end %>
+
   <% else %>
     <p>グループに参加するにはログインが必要です。</p>
     <%= link_to "ログインする", new_session_path %>
   <% end %>
+
+  <% if @pending_memberships %>
+  <h2>参加申請一覧</h2>
+
+  <% if @pending_memberships.any? %>
+    <% @pending_memberships.each do |membership| %>
+      <div>
+        <p>申請者：<%= membership.user.name %></p>
+
+        <%= button_to "承認",
+                      approve_group_group_membership_path(@group, membership),
+                      method: :patch %>
+
+        <%= button_to "拒否",
+                      reject_group_group_membership_path(@group, membership),
+                      method: :patch %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>現在、承認待ちの申請はありません。</p>
+  <% end %>
+<% end %>
 
   <%= link_to "グループ一覧に戻る", groups_path %>
 </div>
