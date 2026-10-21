@@ -16,7 +16,7 @@ class User < ApplicationRecord
 
   # 自分が作成したグループ
   has_many :created_groups, class_name: "Group", foreign_key: :user_id, dependent: :nullify
-  
+
   # 氏名を必須にする
   validates :name, presence: true
 
