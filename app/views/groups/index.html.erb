@@ -1,12 +1,32 @@
-<h1>グループ一覧</h1>
 
 <div class="container">
-  <% @groups.each do |group| %>
-    <div class="card mb-3">
-      <div class="card-body">
-        <h3><%= link_to group.name, group_path(group) %></h3>
-        <p><%= group.description %></p>
-      </div>
+  <h1>グループ一覧</h1>
+
+  <!-- グループ検索フォーム -->
+  <%= form_with url: groups_path, method: :get, local: true do %>
+    <div class="mb-3">
+      <%= label_tag :q, "グループを検索" %>
+      <%= text_field_tag :q, params[:q],
+                         class: "form-control",
+                         placeholder: "グループ名・説明文で検索" %>
     </div>
+
+    <%= submit_tag "検索", class: "btn btn-primary mb-3" %>
+    <%= link_to "検索をクリア", groups_path,
+                class: "btn btn-outline-secondary mb-3" %>
+  <% end %>
+
+  <!-- グループ一覧 -->
+  <% if @groups.any? %>
+    <% @groups.each do |group| %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <h3><%= link_to group.name, group_path(group) %></h3>
+          <p><%= group.description %></p>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>該当するグループがありません。</p>
   <% end %>
 </div>

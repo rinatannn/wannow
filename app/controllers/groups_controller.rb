@@ -1,9 +1,18 @@
+
 class GroupsController < ApplicationController
   allow_unauthenticated_access only: [ :index, :show ]
   before_action :resume_session, only: [ :index, :show ]
 
   def index
     @groups = Group.all
+
+    if params[:q].present?
+      keyword = "%#{Group.sanitize_sql_like(params[:q])}%"
+      @groups = @groups.where(
+        "name LIKE :keyword OR description LIKE :keyword",
+        keyword: keyword
+      )
+    end
   end
 
   def show
