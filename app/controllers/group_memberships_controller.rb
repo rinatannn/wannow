@@ -6,7 +6,8 @@ class GroupMembershipsController < ApplicationController
   def create
     group = Group.find(params[:group_id])
 
-    if group.user_id == Current.user.id
+    # 自分が作成したグループには参加申請できない
+    if group.user_id.present? && group.user_id == Current.user.id
       return redirect_to group_path(group),
                          alert: "自分が作成したグループには参加申請できません"
     end
@@ -45,7 +46,7 @@ class GroupMembershipsController < ApplicationController
   def approve
     group = Group.find(params[:group_id])
 
-    unless group.user_id == Current.user.id
+    unless can_manage_memberships?(group)
       return redirect_to group_path(group), alert: "承認する権限がありません"
     end
 
@@ -63,7 +64,7 @@ class GroupMembershipsController < ApplicationController
   def reject
     group = Group.find(params[:group_id])
 
-    unless group.user_id == Current.user.id
+    unless can_manage_memberships?(group)
       return redirect_to group_path(group), alert: "拒否する権限がありません"
     end
 
@@ -78,6 +79,14 @@ class GroupMembershipsController < ApplicationController
   end
 
   private
+
+  # 参加申請を管理できるユーザーか確認
+  def can_manage_memberships?(group)
+    return false unless Current.user
+
+    group.user_id == Current.user.id ||
+      (group.user_id.nil? && Current.user.admin?)
+  end
 
   # ゲストユーザーの操作を制限
   def reject_guest

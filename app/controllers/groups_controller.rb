@@ -15,13 +15,15 @@ class GroupsController < ApplicationController
     end
   end
 
-  def show
-    @group = Group.find(params[:id])
+def show
+  @group = Group.find(params[:id])
 
-    if Current.user && @group.user_id == Current.user.id
-      @pending_memberships = @group.group_memberships.pending.includes(:user)
-    end
+  if Current.user &&
+     (@group.user_id == Current.user.id ||
+      (@group.user_id.nil? && Current.user.admin?))
+    @pending_memberships = @group.group_memberships.pending.includes(:user)
   end
+end
 
   def new
     @group = Group.new
