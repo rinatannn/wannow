@@ -4,6 +4,8 @@ namespace :admin do
   post "login", to: "sessions#create"
 
   resources :groups
+  resources :comments, only: [ :index, :destroy ]
+
   resources :users, only: [ :index, :show ] do
     patch :suspend, on: :member
     patch :reactivate, on: :member
