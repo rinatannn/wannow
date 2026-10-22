@@ -3,13 +3,17 @@
     <h1><%= @dog_run.name %></h1>
 
 <p>住所：<%= @dog_run.address %></p>
-<h2>📍 ドッグランの場所</h2>
+<% if @dog_run.latitude.present? &&
+      @dog_run.longitude.present? &&
+      ENV["GOOGLE_MAPS_API_KEY"].present? %>
+  <h2>📍 ドッグランの場所</h2>
 
-<div id="dog-run-map"
-     data-latitude="<%= @dog_run.latitude %>"
-     data-longitude="<%= @dog_run.longitude %>"
-     style="width: 100%; height: 350px;">
-</div>
+  <div id="dog-run-map"
+       data-latitude="<%= @dog_run.latitude %>"
+       data-longitude="<%= @dog_run.longitude %>"
+       style="width: 100%; height: 350px;">
+  </div>
+<% end %>
 
 <p>
   営業時間：
