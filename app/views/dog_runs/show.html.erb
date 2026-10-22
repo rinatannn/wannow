@@ -141,7 +141,7 @@
               class: "dog-run-back-link" %>
 </div>
 
-<% if @dog_run.latitude.present? && @dog_run.longitude.present? %>
+<% if @dog_run.latitude.present? && @dog_run.longitude.present? && ENV["GOOGLE_MAPS_API_KEY"].present? %>
   <script>
     window.initDogRunMap = function() {
       const mapElement = document.getElementById("dog-run-map");
