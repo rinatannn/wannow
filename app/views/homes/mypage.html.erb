@@ -16,4 +16,21 @@
 
   <%= button_to "退会する", user_path(@user), method: :delete %>
 
+    <hr>
+
+  <h2>🐾 愛犬情報</h2>
+
+  <% if @user.dogs.any? %>
+    <% @user.dogs.each do |dog| %>
+      <div>
+        <p><strong>名前：</strong><%= dog.name %></p>
+        <p><strong>犬種：</strong><%= dog.breed %></p>
+        <p><strong>性格：</strong><%= dog.personality %></p>
+        <%= link_to "愛犬の詳細を見る", dog_path(dog) %>
+      </div>
+      <hr>
+    <% end %>
+  <% else %>
+    <p>愛犬情報はまだ登録されていません。</p>
+  <% end %>
 </div>
