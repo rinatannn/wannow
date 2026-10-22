@@ -2,6 +2,12 @@ class PostsController < ApplicationController
   allow_unauthenticated_access only: [ :index, :show ]
   before_action :reject_guest, only: %i[new create edit update destroy]
 
+  def liked
+    @posts = Current.user.likes.includes(post: :user)
+                         .order(created_at: :desc)
+                         .map(&:post)
+  end
+
   def index
   @posts = Post.includes(:user).order(created_at: :desc)
 

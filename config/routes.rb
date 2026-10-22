@@ -12,8 +12,13 @@ end
 
   # 投稿機能
   resources :posts do
-   resources :comments, only: [ :create, :destroy ]
-  end
+    collection do
+      get :liked
+    end
+
+    resources :comments, only: [ :create, :destroy ]
+    resource :like, only: [ :create, :destroy ]
+end
 
   # グループ一覧・詳細・新規作成・参加申請
   resources :groups, only: [ :index, :show, :new, :create ] do
