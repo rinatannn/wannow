@@ -7,7 +7,15 @@
 <p>投稿者：<%= @post.user.name %></p>
 
 <p>投稿日：<%= @post.created_at.strftime("%Y/%m/%d") %>（<%= %w(日 月 火 水 木 金 土)[@post.created_at.wday] %>）</p>
+<p>♡ <%= @post.likes.count %> 件</p>
 
+<% if authenticated? && !Current.user.guest? %>
+  <% if Current.user.likes.exists?(post_id: @post.id) %>
+    <%= button_to "♥ いいね解除", post_like_path(@post), method: :delete %>
+  <% else %>
+    <%= button_to "♡ いいね", post_like_path(@post), method: :post %>
+  <% end %>
+<% end %>
 <hr>
 
 <% if authenticated? && Current.user == @post.user %>

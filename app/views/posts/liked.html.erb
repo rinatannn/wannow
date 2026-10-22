@@ -1,0 +1,21 @@
+<h1>いいねした投稿一覧</h1>
+
+<% if @posts.any? %>
+  <% @posts.each do |post| %>
+    <div>
+      <h2><%= link_to post.title, post_path(post) %></h2>
+
+      <p><%= post.body %></p>
+
+      <p>投稿者：<%= post.user.name %></p>
+
+      <p>♡ <%= post.likes.count %> 件</p>
+
+      <hr>
+    </div>
+  <% end %>
+<% else %>
+  <p>まだいいねした投稿はありません。</p>
+<% end %>
+
+<%= link_to "投稿一覧に戻る", posts_path %>

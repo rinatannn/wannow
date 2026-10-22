@@ -44,6 +44,7 @@
 
           <%# ログイン状態によって表示するリンクを切り替える %>
           <% if authenticated? %>
+            <%= link_to "♡ いいねした投稿", liked_posts_path %>
             <%= link_to "愛犬登録", new_dog_path %>
             <%= link_to "マイページ", mypage_path %>
 
