@@ -1217,3 +1217,83 @@ header nav {
     width: 100%;
   }
 }
+
+/* マイページ全体 */
+.user-page-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 32px;
+  background-color: #ffffff;
+  border: 1px solid #cbded3;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.user-page-container h1 {
+  color: #286b5d;
+  margin-bottom: 24px;
+}
+
+.user-page-container h2 {
+  color: #286b5d;
+  margin-top: 32px;
+  margin-bottom: 20px;
+}
+
+/* マイページの愛犬情報カード */
+.dog-profile-card {
+  background-color: #eef5f1;
+  border: 1px solid #cbded3;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.dog-profile-card p {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.dog-profile-card a {
+  display: inline-block;
+  margin-top: 8px;
+  color: #286b5d;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.dog-profile-card a:hover {
+  text-decoration: underline;
+}
+
+/* マイページの会員情報編集ボタン */
+.mypage-edit-button {
+  display: inline-block;
+  background-color: #368b78;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 12px 0;
+}
+
+.mypage-edit-button:hover {
+  background-color: #286b5d;
+  color: #ffffff;
+}
+
+/* マイページの退会ボタン */
+.mypage-withdraw-button {
+  background-color: #ffffff;
+  color: #b42318;
+  border: 1px solid #b42318;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.mypage-withdraw-button:hover {
+  background-color: #fde8e8;
+}
