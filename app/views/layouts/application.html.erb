@@ -48,6 +48,10 @@
             <%= link_to "愛犬登録", new_dog_path %>
             <%= link_to "マイページ", mypage_path %>
 
+            <% if Current.user&.admin? %>
+              <%= link_to "コメント管理", admin_comments_path %>
+            <% end %>
+
             <%# ログアウト %>
             <%= button_to "Sign out", session_path, method: :delete %>
           <% else %>
