@@ -48,6 +48,6 @@ def reject_guest
 end
 
   def dog_params
-    params.require(:dog).permit(:name, :breed, :personality)
-  end
+  params.require(:dog).permit(:name, :breed, :personality, :photo)
+end
 end

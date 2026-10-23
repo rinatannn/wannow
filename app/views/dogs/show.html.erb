@@ -1,12 +1,29 @@
-<h1>愛犬プロフィール</h1>
+<%# 愛犬プロフィール詳細ページ %>
+<div class="dog-show-container">
+  <h1>愛犬プロフィール</h1>
 
-<div>
-  <p><strong>名前：</strong><%= @dog.name %></p>
-  <p><strong>犬種：</strong><%= @dog.breed %></p>
-  <p><strong>性格：</strong><%= @dog.personality %></p>
+<div class="dog-show-content">
+  <div class="dog-show-info">
+    <p><strong>名前：</strong><%= @dog.name %></p>
+    <p><strong>犬種：</strong><%= @dog.breed %></p>
+    <p><strong>性格：</strong><%= @dog.personality %></p>
+  </div>
+
+  <div class="dog-show-photo">
+    <% if @dog.photo.attached? %>
+      <%= image_tag @dog.photo, alt: "#{@dog.name}の写真" %>
+    <% else %>
+      <p>写真未登録</p>
+    <% end %>
+  </div>
 </div>
 
-<%= link_to "編集する", edit_dog_path(@dog) %>
-<%= button_to "削除する", dog_path(@dog),
-              method: :delete,
-              data: { turbo_confirm: "本当に削除しますか？" } %>
+  <div class="dog-show-actions">
+    <%= link_to "編集する", edit_dog_path(@dog), class: "dog-show-edit-button" %>
+
+    <%= button_to "削除する", dog_path(@dog),
+                  method: :delete,
+                  class: "dog-show-delete-button",
+                  data: { turbo_confirm: "本当に削除しますか？" } %>
+  </div>
+</div>

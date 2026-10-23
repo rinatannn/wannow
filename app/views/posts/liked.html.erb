@@ -1,21 +1,30 @@
-<h1>いいねした投稿一覧</h1>
+<div class="liked-posts-container">
+  <h1>いいねした投稿一覧 ♡</h1>
 
-<% if @posts.any? %>
-  <% @posts.each do |post| %>
-    <div>
-      <h2><%= link_to post.title, post_path(post) %></h2>
+  <% if @posts.any? %>
+    <% @posts.each do |post| %>
+      <div class="liked-post-card">
+        <h2>
+          <%= link_to post.title, post_path(post) %>
+        </h2>
 
-      <p><%= post.body %></p>
+        <p class="liked-post-body"><%= post.body %></p>
 
-      <p>投稿者：<%= post.user.name %></p>
+        <p class="liked-post-meta">
+          投稿者：<%= post.user.name %>
+        </p>
 
-      <p>♡ <%= post.likes.count %> 件</p>
-
-      <hr>
+        <p class="liked-post-count">
+          ♡ <%= post.likes.count %> 件
+        </p>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="liked-posts-empty">
+      <p>まだいいねした投稿はありません。</p>
+      <p>気になる投稿を見つけて、いいねしてみましょう！🐶</p>
     </div>
   <% end %>
-<% else %>
-  <p>まだいいねした投稿はありません。</p>
-<% end %>
 
-<%= link_to "投稿一覧に戻る", posts_path %>
+  <%= link_to "← 投稿一覧に戻る", posts_path, class: "liked-posts-back" %>
+</div>

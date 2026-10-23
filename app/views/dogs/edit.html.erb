@@ -1,24 +1,59 @@
-<h1>愛犬プロフィール編集</h1>
+<div class="dog-edit-container">
+  <h1>愛犬プロフィール編集 🐶</h1>
 
-<%= form_with model: @dog do |f| %>
-  <div>
-    <%= f.label :name, "愛犬の名前" %>
-    <%= f.text_field :name %>
+  <div class="dog-edit-card">
+    <%= form_with model: @dog do |f| %>
+
+      <% if @dog.errors.any? %>
+        <div class="dog-edit-errors">
+          <p>入力内容を確認してください。</p>
+          <ul>
+            <% @dog.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="dog-edit-field">
+        <%= f.label :name, "愛犬の名前" %>
+        <%= f.text_field :name %>
+      </div>
+
+      <div class="dog-edit-field">
+        <%= f.label :breed, "犬種" %>
+        <%= f.text_field :breed %>
+      </div>
+
+      <div class="dog-edit-field">
+        <%= f.label :personality, "性格" %>
+        <%= f.text_area :personality, rows: 5 %>
+      </div>
+
+      <div class="dog-edit-field">
+        <%= f.label :photo, "愛犬の写真" %>
+
+        <% if @dog.photo.attached? %>
+          <div class="dog-edit-current-photo">
+            <p>現在の写真</p>
+            <%= image_tag @dog.photo, alt: "#{@dog.name}の写真" %>
+          </div>
+        <% end %>
+
+        <%= f.file_field :photo, accept: "image/*" %>
+        <p class="dog-edit-photo-note">
+          新しい写真を選択すると、現在の写真が変更されます。
+        </p>
+      </div>
+
+      <div class="dog-edit-actions">
+        <%= f.submit "変更を保存する" %>
+      </div>
+
+    <% end %>
   </div>
 
-  <div>
-    <%= f.label :breed, "犬種" %>
-    <%= f.text_field :breed %>
-  </div>
-
-  <div>
-    <%= f.label :personality, "性格" %>
-    <%= f.text_area :personality %>
-  </div>
-
-  <div>
-    <%= f.submit "変更を保存する" %>
-  </div>
-<% end %>
-
-<%= link_to "詳細画面に戻る", dog_path(@dog) %>
+  <div class="dog-edit-back-area">
+  <%= link_to "← 愛犬プロフィールに戻る", dog_path(@dog), class: "dog-edit-back" %>
+</div>
+</div>

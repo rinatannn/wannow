@@ -1,5 +1,4 @@
-
-<div class="container">
+<div class="container group-index">
   <h1>グループ一覧</h1>
 
   <% if authenticated? && !Current.user.guest? %>
@@ -9,7 +8,7 @@
   <% end %>
 
   <!-- グループ検索フォーム -->
-  <%= form_with url: groups_path, method: :get, local: true do %>
+  <%= form_with url: groups_path, method: :get, local: true, class: "group-search-form" do %>
     <div class="mb-3">
       <%= label_tag :q, "グループを検索" %>
       <%= text_field_tag :q, params[:q],
@@ -25,12 +24,21 @@
   <!-- グループ一覧 -->
   <% if @groups.any? %>
     <% @groups.each do |group| %>
-      <div class="card mb-3">
-        <div class="card-body">
-          <h3><%= link_to group.name, group_path(group) %></h3>
-          <p><%= group.description %></p>
-        </div>
-      </div>
+      <div class="card mb-3 group-index-card">
+  <div class="card-body">
+    <h3 class="group-index-title">
+      <%= link_to group.name, group_path(group) %>
+    </h3>
+
+    <p class="group-index-description">
+      <%= group.description %>
+    </p>
+
+    <%= link_to "グループの詳細を見る →",
+                group_path(group),
+                class: "group-index-detail" %>
+  </div>
+</div>
     <% end %>
   <% else %>
     <p>該当するグループがありません。</p>

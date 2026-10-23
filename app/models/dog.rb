@@ -1,6 +1,8 @@
 class Dog < ApplicationRecord
   belongs_to :user
 
+  has_one_attached :photo
+
   has_many :check_ins, dependent: :destroy
   has_many :visit_plans, dependent: :destroy
 

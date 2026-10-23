@@ -1,25 +1,54 @@
+<div class="login-container">
+  <div class="login-card">
 
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
-<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+    <h1>ログイン</h1>
 
-<h2>ログイン</h2>
+    <%= tag.div(flash[:alert], class: "login-alert") if flash[:alert] %>
+    <%= tag.div(flash[:notice], class: "login-notice") if flash[:notice] %>
 
-<%= form_with url: session_path do |form| %>
-  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "メールアドレス", value: params[:email_address] %><br>
+    <%= form_with url: session_path, class: "login-form" do |form| %>
 
-  <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "パスワード", maxlength: 72 %><br>
+      <div class="login-field">
+        <%= form.label :email_address, "メールアドレス" %>
+        <%= form.email_field :email_address,
+            required: true,
+            autofocus: true,
+            autocomplete: "username",
+            placeholder: "メールアドレスを入力",
+            value: params[:email_address] %>
+      </div>
 
-  <%= form.submit "ログイン" %>
-<% end %>
+      <div class="login-field">
+        <%= form.label :password, "パスワード" %>
+        <%= form.password_field :password,
+            required: true,
+            autocomplete: "current-password",
+            placeholder: "パスワードを入力",
+            maxlength: 72 %>
+      </div>
 
-<br>
+      <div class="login-submit">
+        <%= form.submit "ログイン" %>
+      </div>
 
-<%= link_to "パスワードを忘れた方", new_password_path %>
+    <% end %>
 
-<hr>
+    <div class="login-password-link">
+      <%= link_to "パスワードを忘れた方", new_password_path %>
+    </div>
 
-<h3>お試しログイン</h3>
+    <hr>
 
-<p>会員登録なしでWanNowをお試しいただけます。</p>
+    <div class="login-guest">
+      <h2>🐾 お試しログイン</h2>
 
-<%= button_to "ゲストログイン", guest_login_path, method: :post %>
+      <p>会員登録なしでWanNowをお試しいただけます。</p>
+
+      <%= button_to "ゲストログイン",
+          guest_login_path,
+          method: :post,
+          class: "login-guest-button" %>
+    </div>
+
+  </div>
+</div>

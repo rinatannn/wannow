@@ -1,67 +1,90 @@
-<h1>投稿詳細</h1>
+<div class="post-show-container">
 
-<h2><%= @post.title %></h2>
+  <div class="post-show-card">
+    <h1>投稿詳細</h1>
 
-<p><%= @post.body %></p>
+    <h2><%= @post.title %></h2>
 
-<p>投稿者：<%= @post.user.name %></p>
+    <p><%= @post.body %></p>
 
-<p>投稿日：<%= @post.created_at.strftime("%Y/%m/%d") %>（<%= %w(日 月 火 水 木 金 土)[@post.created_at.wday] %>）</p>
-<p>♡ <%= @post.likes.count %> 件</p>
+    <p>投稿者：<%= @post.user.name %></p>
 
-<% if authenticated? && !Current.user.guest? %>
-  <% if Current.user.likes.exists?(post_id: @post.id) %>
-    <%= button_to "♥ いいね解除", post_like_path(@post), method: :delete %>
-  <% else %>
-    <%= button_to "♡ いいね", post_like_path(@post), method: :post %>
-  <% end %>
-<% end %>
-<hr>
+    <p>
+      投稿日：<%= @post.created_at.strftime("%Y/%m/%d") %>
+      （<%= %w(日 月 火 水 木 金 土)[@post.created_at.wday] %>）
+    </p>
 
-<% if authenticated? && Current.user == @post.user %>
-  <p><%= link_to "編集する", edit_post_path(@post) %></p>
+    <p>♡ <%= @post.likes.count %> 件</p>
 
-  <p>
-    <%= button_to "削除する", post_path(@post),
-        method: :delete,
-        data: { turbo_confirm: "本当に削除しますか？" } %>
-  </p>
-<% end %>
+    <% if authenticated? && !Current.user.guest? %>
+      <% if Current.user.likes.exists?(post_id: @post.id) %>
+        <%= button_to "♥ いいね解除", post_like_path(@post),
+            method: :delete,
+            class: "post-show-like-button liked" %>
+      <% else %>
+        <%= button_to "♡ いいね", post_like_path(@post),
+            method: :post,
+            class: "post-show-like-button" %>
+      <% end %>
+    <% end %>
 
+    <% if authenticated? && Current.user == @post.user %>
+      <div class="post-show-actions">
+        <%= link_to "編集する", edit_post_path(@post) %>
 
-<hr>
-
-<h2>コメント</h2>
-
-<% @post.comments.includes(:user).order(created_at: :asc).each do |comment| %>
-  <div>
-    <p><%= comment.user.name %>（<%= comment.created_at.strftime("%Y/%m/%d %H:%M") %>）</p>
-    <p><%= comment.body %></p>
-
-    <% if authenticated? && Current.user == comment.user %>
-      <%= button_to "コメントを削除",
-          post_comment_path(@post, comment),
-          method: :delete,
-          data: { turbo_confirm: "このコメントを削除しますか？" } %>
+        <%= button_to "削除する", post_path(@post),
+            method: :delete,
+            data: { turbo_confirm: "本当に削除しますか？" } %>
+      </div>
     <% end %>
   </div>
-  <hr>
-<% end %>
 
-<% if authenticated? && !Current.user.guest? %>
-  <h3>コメントを投稿する</h3>
+  <div class="post-show-comments">
+    <h2 class="post-show-comment-heading">コメント</h2>
 
-  <%= form_with model: [@post, Comment.new] do |form| %>
-    <div>
-      <%= form.label :body, "コメント本文" %>
-      <%= form.text_area :body, rows: 3 %>
-    </div>
+    <% @post.comments.includes(:user).order(created_at: :asc).each do |comment| %>
+      <div class="post-show-comment-card">
 
-    <%= form.submit "コメントを投稿" %>
-  <% end %>
-<% elsif !authenticated? %>
-  <p>コメントを投稿するにはログインしてください。</p>
-<% end %>
+        <p class="post-show-comment-user">
+          <%= comment.user.name %>
+          （<%= comment.created_at.strftime("%Y/%m/%d %H:%M") %>）
+        </p>
 
+        <p class="post-show-comment-body">
+          <%= comment.body %>
+        </p>
 
-<%= link_to "投稿一覧に戻る", posts_path %>
+        <% if authenticated? && Current.user == comment.user %>
+          <%= button_to "コメントを削除",
+              post_comment_path(@post, comment),
+              method: :delete,
+              class: "post-show-comment-delete",
+              data: { turbo_confirm: "このコメントを削除しますか？" } %>
+        <% end %>
+
+      </div>
+    <% end %>
+
+    <% if authenticated? && !Current.user.guest? %>
+      <div class="post-show-comment-form">
+        <h3>コメントを投稿する</h3>
+
+        <%= form_with model: [@post, Comment.new] do |form| %>
+          <div class="post-show-comment-field">
+            <%= form.label :body, "コメント本文" %>
+            <%= form.text_area :body, rows: 4 %>
+          </div>
+
+          <%= form.submit "コメントを投稿", class: "post-show-comment-submit" %>
+        <% end %>
+      </div>
+    <% elsif !authenticated? %>
+      <p>コメントを投稿するにはログインしてください。</p>
+    <% end %>
+  </div>
+
+  <div class="post-show-back">
+    <%= link_to "← 投稿一覧に戻る", posts_path %>
+  </div>
+
+</div>

@@ -1,35 +1,45 @@
-<h1>愛犬プロフィール登録</h1>
+<div class="dog-new-container">
+  <h1>愛犬プロフィール登録 🐶</h1>
 
-<%= form_with model: @dog do |f| %>
+  <div class="dog-new-card">
+    <%= form_with model: @dog do |f| %>
 
-  <% if @dog.errors.any? %>
-    <div class="alert alert-danger">
-      <p>入力内容を確認してください。</p>
-      <ul>
-        <% @dog.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+      <% if @dog.errors.any? %>
+        <div class="alert alert-danger">
+          <p>入力内容を確認してください。</p>
+          <ul>
+            <% @dog.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-  <div>
-    <%= f.label :name, "愛犬の名前" %>
-    <%= f.text_field :name %>
+      <div class="dog-new-field">
+        <%= f.label :name, "愛犬の名前" %>
+        <%= f.text_field :name %>
+      </div>
+
+      <div class="dog-new-field">
+        <%= f.label :breed, "犬種" %>
+        <%= f.text_field :breed %>
+      </div>
+
+      <div class="dog-new-field">
+        <%= f.label :personality, "性格" %>
+        <%= f.text_area :personality, rows: 5 %>
+      </div>
+
+      <%# 愛犬の写真 %>
+      <div class="dog-new-field">
+        <%= f.label :photo, "愛犬の写真" %>
+        <%= f.file_field :photo, accept: "image/*" %>
+      </div>
+
+      <div class="dog-new-actions">
+        <%= f.submit "登録する" %>
+      </div>
+
+    <% end %>
   </div>
-
-  <div>
-    <%= f.label :breed, "犬種" %>
-    <%= f.text_field :breed %>
-  </div>
-
-  <div>
-    <%= f.label :personality, "性格" %>
-    <%= f.text_area :personality %>
-  </div>
-
-  <div>
-    <%= f.submit "登録する" %>
-  </div>
-
-<% end %>
+</div>

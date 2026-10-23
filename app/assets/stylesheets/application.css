@@ -16,14 +16,14 @@
   height: 320px;
   object-fit: cover;
   display: block;
-  margin: 0 auto;
+  margin: 40px auto 50px;
 }
 
 /* Aboutページ全体のレイアウト */
 .about-container {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 40px 24px;
 }
 
 body {
@@ -88,20 +88,23 @@ header nav > a:first-child {
 
 /* Aboutページの機能一覧 */
 .feature-list {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
 
 .feature-card {
-  flex: 1;
+  min-width: 0;
   background-color: #ffffff;
-  padding: 20px;
+  padding: 24px;
   border-radius: 12px;
 }
 
 .feature-card h3 {
-  font-size: 14px;
-  white-space: nowrap;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #355e52;
+  margin-bottom: 12px;
 }
 
 /* Topページ全体のレイアウト */
@@ -481,6 +484,25 @@ header nav > a:first-child {
 .simple-calendar .calendar-heading {
   font-size: 20px;
   padding: 12px 0;
+  gap: 16px;
+  color: #355e52;
+}
+
+/* 前月・今月・翌月のリンク */
+.simple-calendar .calendar-heading a {
+  display: inline-block;
+  padding: 8px 14px;
+  background-color: #e8f3ef;
+  color: #355e52;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* マウスを重ねたとき */
+.simple-calendar .calendar-heading a:hover {
+  background-color: #d1e8df;
 }
 
 /* 日付の文字 */
@@ -1296,4 +1318,2063 @@ header nav {
 
 .mypage-withdraw-button:hover {
   background-color: #fde8e8;
+}
+
+/* ドッグラン一覧ページ */
+.dog-run-index {
+  max-width: 1000px;
+  margin: 40px auto 64px;
+  padding: 0 24px;
+}
+
+.dog-run-index h1 {
+  color: #355e52;
+  font-size: 30px;
+  margin-bottom: 28px;
+}
+
+/* ドッグラン一覧：検索フォーム */
+.dog-run-search-card {
+  background: #ffffff;
+  border: 1px solid #dcebe5;
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 8px 24px rgba(53, 94, 82, 0.08);
+}
+
+.dog-run-search-card h2 {
+  color: #355e52;
+  font-size: 22px;
+  margin-bottom: 24px;
+}
+
+/* ドッグラン一覧：検索項目 */
+.dog-run-search-field {
+  margin-bottom: 20px;
+}
+
+.dog-run-search-field label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #355e52;
+  margin-bottom: 8px;
+}
+
+.dog-run-search-field input,
+.dog-run-search-field select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dcebe5;
+  border-radius: 10px;
+  font-size: 15px;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+/* ドッグラン一覧：検索ボタン */
+.dog-run-search-card input[type="submit"] {
+  background: #355e52;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 32px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dog-run-search-card input[type="submit"]:hover {
+  background: #28483f;
+}
+
+/* ドッグラン一覧：検索条件クリア */
+.dog-run-search-clear {
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+.dog-run-search-clear a {
+  color: #355e52;
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.dog-run-search-clear a:hover {
+  color: #28483f;
+}
+
+/* ドッグラン一覧：施設カード */
+.dog-run-list-card {
+  background: #ffffff;
+  border: 1px solid #dcebe5;
+  border-radius: 20px;
+  padding: 28px 32px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 24px rgba(53, 94, 82, 0.08);
+}
+
+.dog-run-list-card h2 {
+  font-size: 26px;
+  margin-bottom: 16px;
+}
+
+.dog-run-list-card h2 a {
+  color: #355e52;
+  text-decoration: none;
+}
+
+.dog-run-list-card h2 a:hover {
+  text-decoration: underline;
+}
+
+.dog-run-list-card p {
+  color: #52665f;
+  font-size: 17px;
+  line-height: 1.9;
+  margin-bottom: 12px;
+}
+
+/* 投稿一覧ページ全体 */
+.post-index {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+/* 投稿一覧の見出し */
+.post-index h1 {
+  font-size: 28px;
+  color: #355e52;
+  margin-bottom: 28px;
+}
+
+/* 投稿一覧の検索フォーム */
+.post-search-form {
+  display: flex;
+  gap: 12px;
+  margin: 24px 0 32px;
+}
+
+.post-search-form input[type="text"] {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid #d5e2de;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.post-search-form input[type="submit"] {
+  background-color: #355e52;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  cursor: pointer;
+}
+
+/* 投稿一覧のカード */
+.post-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.post-card h2 {
+  font-size: 24px;
+  margin: 0 0 16px;
+}
+
+.post-card h2 a {
+  color: #355e52;
+  text-decoration: none;
+}
+
+.post-card p {
+  color: #52665f;
+  font-size: 17px;
+  line-height: 1.8;
+  margin: 10px 0;
+}
+
+/* 投稿一覧のいいねボタン */
+.post-card form button {
+  background-color: #ffffff;
+  color: #355e52;
+  border: 1px solid #a9c4b9;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.post-card form button:hover {
+  background-color: #eaf4ef;
+}
+
+/* グループ一覧ページ全体 */
+.group-index {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+/* グループ一覧の見出し */
+.group-index h1 {
+  font-size: 28px;
+  color: #355e52;
+  margin-bottom: 24px;
+}
+
+/* グループ検索フォーム */
+.group-search-form {
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  margin: 24px 0;
+}
+
+/* 検索欄 */
+.group-search-form input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #d5e2de;
+  border-radius: 8px;
+}
+
+/* 検索ラベル */
+.group-search-form label {
+  display: block;
+  font-size: 16px;
+  color: #355e52;
+  margin-bottom: 8px;
+}
+
+/* グループ検索ボタン */
+.group-search-form input[type="submit"] {
+  background-color: #355e52;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.group-search-form input[type="submit"]:hover {
+  background-color: #294a40;
+}
+
+/* グループ詳細ページ */
+.group-show {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+/* グループ情報カード */
+.group-show-card {
+  background-color: #ffffff;
+  padding: 32px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+/* グループ名 */
+.group-show-card h1 {
+  font-size: 28px;
+  color: #355e52;
+  margin: 0 0 16px;
+}
+
+/* グループ説明文 */
+.group-show-card p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #52665f;
+  margin: 0;
+}
+
+/* グループ詳細ページのボタン */
+.group-show form button {
+  background-color: #355e52;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* マウスを乗せたとき */
+.group-show form button:hover {
+  background-color: #294a40;
+}
+
+/* グループ詳細の戻るリンク */
+.group-show-back {
+  margin-top: 24px;
+}
+
+.group-show-back a {
+  color: #355e52;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.group-show-back a:hover {
+  text-decoration: underline;
+}
+
+/* グループ新規作成ページ */
+.group-new-container {
+  max-width: 650px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.group-new-container h1 {
+  font-size: 28px;
+  color: #355e52;
+  margin-bottom: 24px;
+}
+
+.group-new-card {
+  background-color: #ffffff;
+  padding: 32px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.group-new-field {
+  margin-bottom: 24px;
+}
+
+.group-new-field label {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: #355e52;
+  margin-bottom: 8px;
+}
+
+.group-new-field input,
+.group-new-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+}
+
+.group-new-actions input[type="submit"] {
+  background-color: #355e52;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.group-new-actions input[type="submit"]:hover {
+  background-color: #294a40;
+}
+
+/* グループ新規作成ページ */
+.group-new-container {
+  max-width: 650px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.group-new-container h1 {
+  font-size: 28px;
+  color: #355e52;
+  margin-bottom: 24px;
+}
+
+.group-new-card {
+  background-color: #ffffff;
+  padding: 32px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.group-new-field {
+  margin-bottom: 24px;
+}
+
+.group-new-field label {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: #355e52;
+  margin-bottom: 8px;
+}
+
+.group-new-field input,
+.group-new-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+}
+
+.group-new-actions input[type="submit"] {
+  background-color: #355e52;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.group-new-actions input[type="submit"]:hover {
+  background-color: #294a40;
+}
+
+.group-new-back {
+  color: #355e52;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.group-new-back:hover {
+  text-decoration: underline;
+}
+
+/* カレンダーの月表示 */
+.simple-calendar .calendar-heading {
+  font-size: 24px;
+}
+
+/* 前月・今月・翌月ボタン */
+.simple-calendar .calendar-heading a {
+  font-size: 17px;
+  padding: 10px 16px;
+}
+
+/* 月〜日の曜日 */
+.simple-calendar th {
+  font-size: 17px;
+  padding: 14px;
+}
+
+/* 各日付の数字 */
+.simple-calendar .calendar-day strong {
+  font-size: 18px;
+}
+
+/* ========================================
+   いいねした投稿一覧
+======================================== */
+
+.liked-posts-container {
+  max-width: 850px;
+  margin: 40px auto 64px;
+  padding: 0 24px;
+}
+
+/* ページタイトル */
+.liked-posts-container h1 {
+  font-size: 28px;
+  color: #355e52;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+/* 投稿カード */
+.liked-post-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin-bottom: 20px;
+}
+
+/* 投稿タイトル */
+.liked-post-card h2 {
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+.liked-post-card h2 a {
+  color: #355e52;
+  text-decoration: none;
+}
+
+.liked-post-card h2 a:hover {
+  text-decoration: underline;
+}
+
+/* 投稿本文 */
+.liked-post-body {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #52665f;
+  margin-bottom: 16px;
+}
+
+/* 投稿者 */
+.liked-post-meta {
+  font-size: 16px;
+  color: #667a72;
+  margin-bottom: 12px;
+}
+
+/* いいね数 */
+.liked-post-count {
+  font-size: 17px;
+  color: #355e52;
+}
+
+/* 投稿がない場合 */
+.liked-posts-empty {
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 17px;
+  color: #52665f;
+  line-height: 1.8;
+}
+
+/* 戻るリンク */
+.liked-posts-back {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #355e52;
+  text-decoration: none;
+}
+
+.liked-posts-back:hover {
+  text-decoration: underline;
+}
+
+/* ========================================
+   愛犬プロフィール登録画面
+======================================== */
+/* ========================================
+   愛犬プロフィール登録画面
+======================================== */
+
+/* 画面全体 */
+.dog-new-container {
+  max-width: 650px;
+  margin: 48px auto 64px;
+  padding: 0 24px;
+}
+
+/* タイトル */
+.dog-new-container h1 {
+  font-size: 28px;
+  color: #355e52;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+/* 白いカード */
+.dog-new-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 32px;
+}
+
+/* 入力項目 */
+.dog-new-field {
+  margin-bottom: 24px;
+}
+
+/* ラベル */
+.dog-new-field label {
+  display: block;
+  font-size: 17px;
+  font-weight: 600;
+  color: #355e52;
+  margin-bottom: 10px;
+}
+
+/* 入力欄 */
+.dog-new-field input,
+.dog-new-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  font-size: 16px;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+/* 入力中の枠線 */
+.dog-new-field input:focus,
+.dog-new-field textarea:focus {
+  outline: none;
+  border-color: #368b78;
+}
+
+/* 登録ボタン */
+.dog-new-actions input[type="submit"] {
+  background-color: #355e52;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 32px;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+/* マウスを重ねたとき */
+.dog-new-actions input[type="submit"]:hover {
+  background-color: #294a40;
+}
+
+/* ========================================
+   マイページ：自分の投稿一覧
+======================================== */
+
+/* 投稿カード */
+.mypage-post-card {
+  background-color: #edf5f1;
+  border: 1px solid #d4e5dc;
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin-bottom: 20px;
+}
+
+/* 投稿タイトル */
+.mypage-post-title {
+  font-size: 22px;
+  margin-bottom: 14px;
+}
+
+.mypage-post-title a {
+  color: #355e52;
+  text-decoration: none;
+}
+
+.mypage-post-title a:hover {
+  text-decoration: underline;
+}
+
+/* 投稿本文 */
+.mypage-post-body {
+  font-size: 19px;
+  line-height: 1.8;
+  color: #52665f;
+  margin-bottom: 14px;
+}
+
+/* 投稿日 */
+.mypage-post-date {
+  font-size: 16px;
+  color: #667a72;
+  margin-bottom: 0;
+}
+
+/* マイページの文字を見やすくする */
+.user-page-container p {
+  font-size: 19px;
+  line-height: 1.8;
+}
+
+/* 愛犬情報・投稿一覧の見出し */
+.user-page-container h2 {
+  font-size: 26px;
+}
+
+/* マイページ：投稿本文 */
+.user-page-container .mypage-post-body {
+  font-size: 19px;
+}
+
+/* マイページ：投稿日 */
+.user-page-container .mypage-post-date {
+  font-size: 16px;
+}
+
+/* 会員情報編集ページ */
+.user-form-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 36px;
+  background-color: #ffffff;
+  border: 1px solid #cbded3;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* 会員情報編集の見出し */
+.user-form-container h1 {
+  color: #286b5d;
+  font-size: 28px;
+  margin-bottom: 28px;
+}
+
+/* 会員情報編集：各入力項目 */
+.user-form-container form > div {
+  margin-bottom: 20px;
+}
+
+/* 会員情報編集：ラベル */
+.user-form-container label {
+  display: block;
+  font-size: 17px;
+  font-weight: bold;
+  color: #355e52;
+  margin-bottom: 8px;
+}
+
+/* 会員情報編集：入力欄 */
+.user-form-container input[type="text"],
+.user-form-container input[type="email"],
+.user-form-container input[type="password"] {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  font-size: 16px;
+  border: 1px solid #cbded3;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+/* 会員情報編集：更新ボタン */
+.user-form-container input[type="submit"] {
+  background-color: #398b76;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* 更新ボタンにマウスを重ねたとき */
+.user-form-container input[type="submit"]:hover {
+  background-color: #286b5d;
+}
+
+/* 会員情報編集：退会ボタン */
+.user-form-container button[type="submit"] {
+  background-color: #ffffff;
+  color: #b35c5c;
+  border: 1px solid #d9a5a5;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* 退会ボタンにマウスを重ねたとき */
+.user-form-container button[type="submit"]:hover {
+  background-color: #fff1f1;
+}
+
+/* 愛犬プロフィール詳細ページ */
+.dog-show-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 36px;
+  background-color: #ffffff;
+  border: 1px solid #cbded3;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* 見出し */
+.dog-show-container h1 {
+  color: #286b5d;
+  font-size: 28px;
+  margin-bottom: 28px;
+}
+
+/* 愛犬情報 */
+.dog-show-info p {
+  font-size: 19px;
+  line-height: 1.8;
+  color: #52665f;
+  margin-bottom: 16px;
+}
+
+/* 項目名 */
+.dog-show-info strong {
+  color: #355e52;
+}
+
+/* 愛犬プロフィール：ボタンの配置 */
+.dog-show-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+/* 編集ボタン */
+.dog-show-edit-button {
+  display: inline-block;
+  background-color: #398b76;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.dog-show-edit-button:hover {
+  background-color: #286b5d;
+}
+
+/* 削除ボタン */
+.dog-show-delete-button {
+  background-color: #ffffff;
+  color: #b35c5c;
+  border: 1px solid #d9a5a5;
+  padding: 11px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.dog-show-delete-button:hover {
+  background-color: #fff1f1;
+}
+
+/* 愛犬プロフィール：情報と写真を横並びにする */
+.dog-show-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+/* 愛犬情報 */
+.dog-show-info {
+  flex: 1;
+  min-width: 0;
+}
+
+/* 写真の表示エリア */
+.dog-show-photo {
+  width: 280px;
+  height: 280px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #eef5f1;
+  margin-top: -45px;
+}
+
+/* 愛犬の写真 */
+.dog-show-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 写真が未登録の場合 */
+.dog-show-photo p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  font-size: 14px;
+  color: #667a72;
+}
+
+/* マイページ：愛犬情報と写真を横並び */
+.mypage-dog-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+/* 愛犬の名前・犬種・性格 */
+.mypage-dog-info {
+  flex: 1;
+  min-width: 0;
+}
+
+/* 愛犬の写真エリア */
+.mypage-dog-photo {
+  width: 190px;
+  height: 190px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+/* 愛犬の写真 */
+.mypage-dog-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 写真未登録の場合 */
+.mypage-dog-photo p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: 0;
+  font-size: 14px;
+  color: #667a72;
+}
+
+/* 画面が狭い場合 */
+@media (max-width: 480px) {
+  .mypage-dog-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* 投稿詳細画面の全体 */
+.post-show-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* 投稿詳細の白いカード */
+.post-show-card {
+  background-color: #ffffff;
+  border: 1px solid #cbded3;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* 投稿詳細の見出し */
+.post-show-card h1 {
+  color: #286b5d;
+  font-size: 28px;
+  margin-bottom: 24px;
+}
+
+/* 投稿タイトル */
+.post-show-card h2 {
+  color: #355e52;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* 投稿本文・投稿情報 */
+.post-show-card p {
+  color: #52665f;
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+/* 投稿詳細：編集・削除ボタンを横並び */
+.post-show-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* ボタンを囲むpタグの余白をなくす */
+.post-show-actions p {
+  margin: 0;
+}
+
+/* 編集ボタン */
+.post-show-actions a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #368b78;
+  color: #ffffff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.post-show-actions a:hover {
+  background-color: #286b5d;
+}
+
+/* 削除ボタン */
+.post-show-actions button {
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: #c75b5b;
+  border: 1px solid #e3b7b7;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.post-show-actions button:hover {
+  background-color: #fff1f1;
+}
+
+/* 投稿詳細：削除ボタン */
+.post-show-actions button {
+  padding: 10px 20px;
+  background-color: #fff0f0;
+  color: #d64545;
+  border: 2px solid #d64545;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* マウスを重ねたとき */
+.post-show-actions button:hover {
+  background-color: #d64545;
+  color: #ffffff;
+}
+
+/* 投稿詳細：いいねボタン */
+.post-show-like-button {
+  padding: 10px 20px;
+  background-color: #fff0f5;
+  color: #e75480;
+  border: 2px solid #e75480;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* マウスを重ねたとき */
+.post-show-like-button:hover {
+  background-color: #ffe0eb;
+}
+
+/* いいね済みのボタン */
+.post-show-like-button.liked {
+  background-color: #e75480;
+  color: #ffffff;
+  border-color: #e75480;
+}
+
+/* いいね済みボタンにマウスを重ねたとき */
+.post-show-like-button.liked:hover {
+  background-color: #ad4966;
+}
+
+/* ========================================
+   投稿詳細：コメント欄
+======================================== */
+
+.post-show-comments {
+  margin-top: 28px;
+}
+
+/* コメント見出し */
+.post-show-comment-heading {
+  color: #355e52;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* コメントカード */
+.post-show-comment-card {
+  background-color: #ffffff;
+  border: 1px solid #dce8e2;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+}
+
+/* コメント投稿者・日時 */
+.post-show-comment-user {
+  color: #355e52;
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+/* コメント本文 */
+.post-show-comment-body {
+  color: #52665f;
+  font-size: 17px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+/* コメント削除ボタン */
+.post-show-comment-delete {
+  background-color: #fff0f2;
+  color: #d64545;
+  border: 1px solid #d64545;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.post-show-comment-delete:hover {
+  background-color: #d64545;
+  color: #ffffff;
+}
+
+/* コメント投稿フォーム */
+.post-show-comment-form {
+  background-color: #ffffff;
+  border: 1px solid #dce8e2;
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 24px;
+}
+
+.post-show-comment-form h3 {
+  color: #355e52;
+  font-size: 20px;
+  margin-bottom: 18px;
+}
+
+/* 入力欄 */
+.post-show-comment-field label {
+  display: block;
+  color: #355e52;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.post-show-comment-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #cbded5;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 16px;
+  resize: vertical;
+}
+
+.post-show-comment-field textarea:focus {
+  outline: none;
+  border-color: #388b78;
+}
+
+/* コメント投稿ボタン */
+.post-show-comment-submit {
+  background-color: #388b78;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 22px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 14px;
+  cursor: pointer;
+}
+
+.post-show-comment-submit:hover {
+  background-color: #2d7162;
+}
+
+/* 投稿一覧に戻る */
+.post-show-back {
+  margin-top: 24px;
+  margin-bottom: 30px;
+}
+
+.post-show-back a {
+  color: #355e52;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.post-show-back a:hover {
+  text-decoration: underline;
+}
+
+/* ========================================
+   愛犬プロフィール編集画面
+======================================== */
+
+.dog-edit-container {
+  max-width: 650px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.dog-edit-container h1 {
+  color: #355e52;
+  font-size: 28px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+/* 白いカード */
+.dog-edit-card {
+  background-color: #ffffff;
+  border: 1px solid #dce8e2;
+  border-radius: 14px;
+  padding: 32px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+}
+
+/* 入力項目 */
+.dog-edit-field {
+  margin-bottom: 24px;
+}
+
+.dog-edit-field label {
+  display: block;
+  color: #355e52;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* 名前・犬種・性格 */
+.dog-edit-field input[type="text"],
+.dog-edit-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #cbded5;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #ffffff;
+}
+
+.dog-edit-field textarea {
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.dog-edit-field input:focus,
+.dog-edit-field textarea:focus {
+  outline: none;
+  border-color: #388b78;
+}
+
+/* 現在の写真 */
+.dog-edit-current-photo {
+  margin-bottom: 16px;
+}
+
+.dog-edit-current-photo p {
+  color: #52665f;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.dog-edit-current-photo img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* 写真選択 */
+.dog-edit-field input[type="file"] {
+  display: block;
+  max-width: 100%;
+  font-size: 14px;
+  color: #52665f;
+}
+
+.dog-edit-photo-note {
+  color: #667a72;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+/* 保存ボタン */
+.dog-edit-actions {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.dog-edit-actions input[type="submit"] {
+  background-color: #388b78;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 13px 32px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.dog-edit-actions input[type="submit"]:hover {
+  background-color: #2d7162;
+}
+
+/* 戻るリンク */
+.dog-edit-back {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.dog-edit-back a {
+  color: #355e52;
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.dog-edit-back a:hover {
+  text-decoration: underline;
+}
+
+/* エラーメッセージ */
+.dog-edit-errors {
+  background-color: #fff0f2;
+  color: #b83e50;
+  border: 1px solid #f0b8c1;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 480px) {
+  .dog-edit-card {
+    padding: 22px 18px;
+  }
+
+  .dog-edit-container h1 {
+    font-size: 24px;
+  }
+}
+
+/* 愛犬写真のファイル選択ボタン */
+.dog-edit-field input[type="file"] {
+  display: block;
+  width: 100%;
+  font-size: 14px;
+  color: #667a72;
+}
+
+/* ファイル選択ボタンのデザイン */
+.dog-edit-field input[type="file"]::file-selector-button {
+  background-color: #e5f3ed;
+  color: #355e52;
+  border: 1px solid #b8d8ca;
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin-right: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.dog-edit-field input[type="file"]::file-selector-button:hover {
+  background-color: #cfe9dd;
+}
+
+/* 愛犬プロフィール編集：戻るリンク */
+.dog-edit-back {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 12px 24px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #355e52;
+  background-color: #e5f3ed;
+  border: 1px solid #b8d8ca;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.dog-edit-back:hover {
+  background-color: #cfe9dd;
+}
+
+/* 戻るボタンの配置 */
+.dog-edit-back-area {
+  text-align: center;
+  margin-top: 24px;
+}
+
+/* マイページ：投稿詳細リンク */
+.mypage-post-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #355e52;
+  text-decoration: none;
+}
+
+.mypage-post-link:hover {
+  color: #247a60;
+  text-decoration: underline;
+}
+
+/* 投稿日は右寄せ */
+.mypage-post-date {
+  text-align: left;
+  font-size: 15px;
+  color: #667a72;
+  margin-bottom: 4px;
+}
+
+.mypage-post-link {
+  margin-top: 4px;
+}
+
+/* ==========================
+   ログイン画面
+========================== */
+
+.login-container {
+  max-width: 520px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+.login-card {
+  background-color: #ffffff;
+  border: 1px solid #d6e5df;
+  border-radius: 14px;
+  padding: 36px 40px;
+  box-shadow: 0 4px 12px rgba(53, 94, 82, 0.06);
+}
+
+.login-card h1 {
+  color: #355e52;
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* 入力欄 */
+.login-field {
+  margin-bottom: 22px;
+}
+
+.login-field label {
+  display: block;
+  font-size: 17px;
+  font-weight: bold;
+  color: #355e52;
+  margin-bottom: 8px;
+}
+
+.login-field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 14px;
+  border: 1px solid #cbded6;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #ffffff;
+}
+
+.login-field input:focus {
+  outline: 2px solid #83b9a8;
+  outline-offset: 1px;
+}
+
+/* ログインボタン */
+.login-submit input {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  background-color: #398b78;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.login-submit input:hover {
+  background-color: #2d7565;
+}
+
+/* パスワード再設定 */
+.login-password-link {
+  text-align: center;
+  margin: 22px 0;
+}
+
+.login-password-link a {
+  color: #355e52;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.login-password-link a:hover {
+  text-decoration: underline;
+}
+
+.login-card hr {
+  border: none;
+  border-top: 1px solid #d6e5df;
+  margin: 28px 0;
+}
+
+/* ゲストログイン */
+.login-guest {
+  text-align: center;
+}
+
+.login-guest h2 {
+  color: #355e52;
+  font-size: 23px;
+  margin-bottom: 12px;
+}
+
+.login-guest p {
+  color: #52665f;
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.login-guest-button {
+  background-color: #e8f4ee;
+  color: #355e52;
+  border: 1px solid #a8cfc0;
+  border-radius: 8px;
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.login-guest-button:hover {
+  background-color: #d6eae0;
+}
+
+/* メッセージ */
+.login-alert {
+  color: #c75050;
+  margin-bottom: 16px;
+}
+
+.login-notice {
+  color: #398b78;
+  margin-bottom: 16px;
+}
+
+/* スマートフォン対応 */
+@media (max-width: 480px) {
+  .login-container {
+    margin: 24px auto;
+    padding: 0 16px;
+  }
+
+  .login-card {
+    padding: 26px 22px;
+  }
+}
+
+/* ==========================
+   パスワード再設定画面
+========================== */
+
+.password-reset-container {
+  max-width: 520px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+.password-reset-card {
+  background-color: #ffffff;
+  border: 1px solid #d6e5df;
+  border-radius: 14px;
+  padding: 36px 40px;
+  box-shadow: 0 4px 12px rgba(53, 94, 82, 0.06);
+}
+
+/* タイトル */
+.password-reset-card h1 {
+  color: #355e52;
+  font-size: 26px;
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+/* 説明文 */
+.password-reset-description {
+  color: #52665f;
+  font-size: 16px;
+  line-height: 1.8;
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+/* 入力欄 */
+.password-reset-field {
+  margin-bottom: 24px;
+}
+
+.password-reset-field label {
+  display: block;
+  color: #355e52;
+  font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.password-reset-field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 14px;
+  border: 1px solid #cbded6;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #ffffff;
+}
+
+.password-reset-field input:focus {
+  outline: 2px solid #83b9a8;
+  outline-offset: 1px;
+}
+
+/* 送信ボタン */
+.password-reset-submit input {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  background-color: #398b78;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.password-reset-submit input:hover {
+  background-color: #2d7565;
+}
+
+/* ログイン画面に戻る */
+.password-reset-back {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.password-reset-back a {
+  color: #355e52;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.password-reset-back a:hover {
+  text-decoration: underline;
+}
+
+/* スマートフォン対応 */
+@media (max-width: 480px) {
+  .password-reset-container {
+    margin: 24px auto;
+    padding: 0 16px;
+  }
+
+  .password-reset-card {
+    padding: 26px 22px;
+  }
+}
+
+/* ==========================
+   管理者ログイン画面
+========================== */
+
+.admin-login-container {
+  max-width: 520px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+.admin-login-card {
+  background-color: #ffffff;
+  border: 1px solid #d6e5df;
+  border-radius: 14px;
+  padding: 36px 40px;
+  box-shadow: 0 4px 12px rgba(53, 94, 82, 0.06);
+}
+
+/* タイトル */
+.admin-login-card h1 {
+  color: #355e52;
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+/* 説明文 */
+.admin-login-description {
+  color: #52665f;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* 入力欄 */
+.admin-login-field {
+  margin-bottom: 22px;
+}
+
+.admin-login-field label {
+  display: block;
+  color: #355e52;
+  font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.admin-login-field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 14px;
+  border: 1px solid #cbded6;
+  border-radius: 8px;
+  background-color: #ffffff;
+  font-size: 16px;
+}
+
+.admin-login-field input:focus {
+  outline: 2px solid #83b9a8;
+  outline-offset: 1px;
+}
+
+/* ログインボタン */
+.admin-login-submit input {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  background-color: #398b78;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.admin-login-submit input:hover {
+  background-color: #2d7565;
+}
+
+/* スマートフォン対応 */
+@media (max-width: 480px) {
+  .admin-login-container {
+    margin: 24px auto;
+    padding: 0 16px;
+  }
+
+  .admin-login-card {
+    padding: 26px 22px;
+  }
+}
+
+/* ==========================
+   グループ詳細画面
+========================== */
+
+/* グループ情報カード */
+.group-show .group-show-card {
+  background-color: #ffffff;
+  border: 1px solid #d6e5df;
+  border-radius: 14px;
+  padding: 32px 36px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(53, 94, 82, 0.05);
+}
+
+.group-show .group-show-card h1 {
+  color: #355e52;
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.group-show-description {
+  color: #52665f;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.group-show-card hr {
+  border: none;
+  border-top: 1px solid #d6e5df;
+  margin: 24px 0;
+}
+
+/* 参加状況 */
+.group-show-membership {
+  margin-top: 10px;
+}
+
+.group-show-message {
+  color: #52665f;
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+
+.group-show-pending {
+  color: #8a6d3b;
+  background-color: #fff8e8;
+  border: 1px solid #f0dfb6;
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 17px;
+}
+
+/* 参加申請・ログインボタン */
+.group-show-join-button,
+.group-show-login-button {
+  display: inline-block;
+  background-color: #398b78;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.group-show-join-button:hover,
+.group-show-login-button:hover {
+  background-color: #2d7565;
+  color: #ffffff;
+}
+
+/* 退会ボタン */
+.group-show-leave-button {
+  background-color: #ffffff;
+  color: #d64545;
+  border: 2px solid #d64545;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.group-show-leave-button:hover {
+  background-color: #d64545;
+  color: #ffffff;
+}
+
+/* 参加申請一覧 */
+.group-show-requests {
+  background-color: #ffffff;
+  border: 1px solid #d6e5df;
+  border-radius: 14px;
+  padding: 28px 32px;
+  margin-bottom: 24px;
+}
+
+.group-show-requests h2 {
+  color: #355e52;
+  font-size: 24px;
+  margin-bottom: 22px;
+}
+
+.group-show-request-card {
+  background-color: #edf7f3;
+  border: 1px solid #d6e5df;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 14px;
+}
+
+.group-show-request-card p {
+  color: #355e52;
+  font-size: 17px;
+  margin-bottom: 14px;
+}
+
+.group-show-request-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 承認ボタン */
+.group-show-approve-button {
+  background-color: #398b78;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.group-show-approve-button:hover {
+  background-color: #2d7565;
+}
+
+/* 拒否ボタン */
+.group-show-reject-button {
+  background-color: #ffffff;
+  color: #d64545;
+  border: 2px solid #d64545;
+  border-radius: 8px;
+  padding: 8px 22px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.group-show-reject-button:hover {
+  background-color: #d64545;
+  color: #ffffff;
+}
+
+/* グループ一覧に戻る */
+.group-show .group-show-back {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.group-show .group-show-back a {
+  display: inline-block;
+  color: #355e52;
+  font-size: 17px;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 10px 16px;
+}
+
+.group-show .group-show-back a:hover {
+  text-decoration: underline;
+}
+
+/* スマートフォン対応 */
+@media (max-width: 480px) {
+  .group-show .group-show-card,
+  .group-show-requests {
+    padding: 24px 20px;
+  }
+
+  .group-show-request-actions {
+    flex-wrap: wrap;
+  }
+}
+
+/* グループ一覧：カード */
+.group-index .group-index-card {
+  background-color: #edf7f3;
+  border: 1px solid #cfe3da;
+  border-radius: 14px;
+  padding: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(53, 94, 82, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* マウスを重ねたとき */
+.group-index .group-index-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(53, 94, 82, 0.12);
+}
+
+/* グループ名 */
+.group-index-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.group-index-title a {
+  color: #355e52;
+  text-decoration: none;
+}
+
+.group-index-title a:hover {
+  text-decoration: underline;
+}
+
+/* 説明文 */
+.group-index-description {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #52665f;
+  margin-bottom: 16px;
+}
+
+/* 詳細リンク */
+.group-index-detail {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: bold;
+  color: #355e52;
+  text-decoration: none;
+}
+
+.group-index-detail:hover {
+  text-decoration: underline;
+}
+
+/* グループ一覧：文字の見やすさを調整 */
+.group-index .group-index-card .group-index-title a {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.group-index .group-index-card .group-index-description {
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+
+.group-index .group-index-card .group-index-detail {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* カード内の余白 */
+.group-index .group-index-card .card-body {
+  padding: 28px;
+}
+
+/* グループ一覧：白いカードに統一 */
+.group-index .group-index-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e9e5;
+  border-radius: 12px;
+  padding: 0;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 10px rgba(53, 94, 82, 0.05);
+}
+
+/* カード内の余白 */
+.group-index .group-index-card .card-body {
+  padding: 28px;
+}
+
+/* グループ名 */
+.group-index .group-index-card h3 a {
+  color: #355e52;
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* グループ説明文 */
+.group-index .group-index-card p {
+  color: #52665f;
+  font-size: 17px;
+  line-height: 1.8;
 }

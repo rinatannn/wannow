@@ -26,11 +26,25 @@
   <% if @user.dogs.any? %>
     <% @user.dogs.each do |dog| %>
       <div class="dog-profile-card">
-        <p><strong>名前：</strong><%= dog.name %></p>
-        <p><strong>犬種：</strong><%= dog.breed %></p>
-        <p><strong>性格：</strong><%= dog.personality %></p>
-        <%= link_to "愛犬の詳細を見る", dog_path(dog) %>
-      </div>
+  <div class="mypage-dog-content">
+
+    <div class="mypage-dog-info">
+      <p><strong>名前：</strong><%= dog.name %></p>
+      <p><strong>犬種：</strong><%= dog.breed %></p>
+      <p><strong>性格：</strong><%= dog.personality %></p>
+      <%= link_to "愛犬の詳細を見る", dog_path(dog) %>
+    </div>
+
+    <div class="mypage-dog-photo">
+      <% if dog.photo.attached? %>
+        <%= image_tag dog.photo, alt: "#{dog.name}の写真" %>
+      <% else %>
+        <p>写真未登録</p>
+      <% end %>
+    </div>
+
+  </div>
+</div>
       <hr>
     <% end %>
   <% else %>
@@ -43,12 +57,18 @@
 
   <% if @user.posts.any? %>
     <% @user.posts.order(created_at: :desc).each do |post| %>
-      <div class="post-card">
-        <h3><%= link_to post.title, post_path(post) %></h3>
-        <p><%= post.body %></p>
-        <p>投稿日：<%= post.created_at.strftime("%Y/%m/%d") %></p>
-      </div>
-      <hr>
+      <div class="mypage-post-card">
+  <h3 class="mypage-post-title">
+    <%= link_to post.title, post_path(post) %>
+  </h3>
+
+  <p class="mypage-post-body"><%= post.body %></p>
+
+  <p class="mypage-post-date">
+    投稿日：<%= post.created_at.strftime("%Y/%m/%d") %>
+  </p>
+  <%= link_to "投稿の詳細を見る →", post_path(post), class: "mypage-post-link" %>
+</div>
     <% end %>
   <% else %>
     <p>まだ投稿がありません。</p>

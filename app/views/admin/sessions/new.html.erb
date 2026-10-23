@@ -1,25 +1,39 @@
-<h2>管理者ログイン</h2>
+<div class="admin-login-container">
+  <div class="admin-login-card">
 
-<p>WanNow 管理者専用ページです。</p>
+    <h1>管理者ログイン</h1>
 
-<%= form_with url: admin_login_path do |form| %>
-  <div>
-    <%= form.label :email_address, "メールアドレス" %><br>
-    <%= form.email_field :email_address,
-          required: true,
-          autofocus: true,
-          autocomplete: "username",
-          value: params[:email_address] %>
+    <p class="admin-login-description">
+      WanNow 管理者専用ページです。
+    </p>
+
+    <%= form_with url: admin_login_path, class: "admin-login-form" do |form| %>
+
+      <div class="admin-login-field">
+        <%= form.label :email_address, "メールアドレス" %>
+
+        <%= form.email_field :email_address,
+              required: true,
+              autofocus: true,
+              autocomplete: "username",
+              placeholder: "メールアドレスを入力",
+              value: params[:email_address] %>
+      </div>
+
+      <div class="admin-login-field">
+        <%= form.label :password, "パスワード" %>
+
+        <%= form.password_field :password,
+              required: true,
+              autocomplete: "current-password",
+              placeholder: "パスワードを入力" %>
+      </div>
+
+      <div class="admin-login-submit">
+        <%= form.submit "管理者としてログイン" %>
+      </div>
+
+    <% end %>
+
   </div>
-
-  <div>
-    <%= form.label :password, "パスワード" %><br>
-    <%= form.password_field :password,
-          required: true,
-          autocomplete: "current-password" %>
-  </div>
-
-  <div>
-    <%= form.submit "管理者としてログイン" %>
-  </div>
-<% end %>
+</div>

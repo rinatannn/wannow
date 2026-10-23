@@ -1,27 +1,31 @@
-<h1>グループ新規作成</h1>
+<div class="group-new-container">
+  <h1>グループ新規作成</h1>
 
-<%= form_with model: @group do |f| %>
-  <% if @group.errors.any? %>
-    <ul>
-      <% @group.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+  <div class="group-new-card">
+    <%= form_with model: @group do |f| %>
+      <% if @group.errors.any? %>
+        <ul>
+          <% @group.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
       <% end %>
-    </ul>
-  <% end %>
 
-  <div>
-    <%= f.label :name, "グループ名" %>
-    <%= f.text_field :name, required: true %>
+      <div class="group-new-field">
+        <%= f.label :name, "グループ名" %>
+        <%= f.text_field :name, required: true %>
+      </div>
+
+      <div class="group-new-field">
+        <%= f.label :description, "グループの説明・ルール" %>
+        <%= f.text_area :description, rows: 5 %>
+      </div>
+
+      <div class="group-new-actions">
+        <%= f.submit "グループを作成する" %>
+      </div>
+    <% end %>
   </div>
 
-  <div>
-    <%= f.label :description, "グループの説明・ルール" %>
-    <%= f.text_area :description, rows: 5 %>
-  </div>
-
-  <div>
-    <%= f.submit "グループを作成する" %>
-  </div>
-<% end %>
-
-<%= link_to "グループ一覧に戻る", groups_path %>
+  <%= link_to "グループ一覧に戻る", groups_path, class: "group-new-back" %>
+</div>
