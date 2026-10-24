@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <h2>愛犬詳細</h2>
+
+  <div class="card mt-3">
+    <div class="card-body">
+
+      <% if @dog.photo.attached? %>
+        <div class="mb-3">
+          <%= image_tag @dog.photo, width: 250, alt: @dog.name %>
+        </div>
+      <% end %>
+
+      <p><strong>ID：</strong><%= @dog.id %></p>
+      <p><strong>愛犬名：</strong><%= @dog.name %></p>
+      <p><strong>犬種：</strong><%= @dog.breed %></p>
+      <p><strong>性格：</strong><%= @dog.personality %></p>
+
+      <hr>
+
+      <h4>飼い主情報</h4>
+      <p><strong>飼い主名：</strong><%= @dog.user.name %></p>
+      <p>
+        <strong>会員詳細：</strong>
+        <%= link_to "飼い主の詳細を見る", admin_user_path(@dog.user) %>
+      </p>
+
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <%= link_to "愛犬一覧に戻る", admin_dogs_path, class: "btn btn-secondary" %>
+  </div>
+</div>
