@@ -1,0 +1,83 @@
+<div class="container my-5">
+
+  <!-- ページタイトル -->
+  <h2 class="fw-bold mb-4">ドッグラン詳細</h2>
+
+  <!-- ドッグラン情報 -->
+  <div class="card shadow-sm border-0 mb-4">
+    <div class="card-body p-4">
+
+      <table class="table table-bordered align-middle mb-0">
+        <tbody>
+
+          <!-- ドッグラン名 -->
+          <tr>
+            <th class="table-light" style="width: 30%;">ドッグラン名</th>
+            <td><%= @dog_run.name %></td>
+          </tr>
+
+          <!-- 住所 -->
+          <tr>
+            <th class="table-light">住所</th>
+            <td><%= @dog_run.address %></td>
+          </tr>
+
+          <!-- 営業時間 -->
+          <tr>
+            <th class="table-light">営業時間</th>
+            <td>
+              <%= @dog_run.opening_time.strftime("%H:%M") %>
+              〜
+              <%= @dog_run.closing_time.strftime("%H:%M") %>
+            </td>
+          </tr>
+
+          <!-- 施設タイプ -->
+          <tr>
+            <th class="table-light">施設タイプ</th>
+            <td>
+              <%= @dog_run.indoor? ? "屋内" : "屋外" %>
+            </td>
+          </tr>
+
+          <!-- 緯度 -->
+          <tr>
+            <th class="table-light">緯度</th>
+            <td><%= @dog_run.latitude %></td>
+          </tr>
+
+          <!-- 経度 -->
+          <tr>
+            <th class="table-light">経度</th>
+            <td><%= @dog_run.longitude %></td>
+          </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+  <!-- 操作ボタン -->
+  <div class="d-flex gap-2 align-items-center">
+
+    <!-- 編集ボタン -->
+    <%= link_to "編集する",
+        edit_admin_dog_run_path(@dog_run),
+        class: "btn btn-success" %>
+
+    <!-- 削除ボタン -->
+    <%= button_to "削除する",
+        admin_dog_run_path(@dog_run),
+        method: :delete,
+        data: { turbo_confirm: "本当にこのドッグランを削除しますか？" },
+        class: "btn btn-outline-danger" %>
+
+    <!-- 一覧へ戻る -->
+    <%= link_to "一覧に戻る",
+        admin_dog_runs_path,
+        class: "btn btn-outline-secondary" %>
+
+  </div>
+
+</div>
