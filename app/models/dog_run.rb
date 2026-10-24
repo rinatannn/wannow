@@ -22,6 +22,10 @@ class DogRun < ApplicationRecord
   # バリデーションエラーで表示する項目名を日本語にする
   def self.human_attribute_name(attribute, options = {})
     {
+      "name" => "ドッグラン名",
+      "address" => "住所",
+      "opening_time" => "開店時間",
+      "closing_time" => "閉店時間",
       "latitude" => "緯度",
       "longitude" => "経度"
     }.fetch(attribute.to_s) { super }
