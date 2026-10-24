@@ -17,20 +17,37 @@ class Admin::DogRunsController < Admin::BaseController
     @dog_run = DogRun.find(params[:id])
   end
 
-  # ドッグラン更新処理
-  def update
-    # URLのIDから更新対象のドッグランを取得
-    @dog_run = DogRun.find(params[:id])
+# ドッグラン更新処理
+def update
+  # URLのIDから編集対象のドッグランを取得
+  @dog_run = DogRun.find(params[:id])
 
-    # フォームから送信された情報で更新
-    if @dog_run.update(dog_run_params)
-      # 更新成功時は詳細画面へ移動
-      redirect_to admin_dog_run_path(@dog_run), notice: "ドッグランを更新しました。"
-    else
-      # 更新失敗時は編集画面を再表示
-      render :edit, status: :unprocessable_entity
-    end
+  # フォームから送信された情報をハッシュに変換
+  attributes = dog_run_params.to_h
+
+  # 住所が変更されていて、
+  # 緯度・経度が以前の値から変更されていない場合
+  if attributes["address"] != @dog_run.address &&
+      attributes["latitude"].to_s == @dog_run.latitude.to_s &&
+      attributes["longitude"].to_s == @dog_run.longitude.to_s
+
+    # 古い緯度・経度を空にする
+    # これにより、モデル側で新しい住所から座標を自動取得する
+    attributes["latitude"] = nil
+    attributes["longitude"] = nil
   end
+
+  # フォームから受け取った情報でドッグランを更新
+  if @dog_run.update(attributes)
+
+    # 更新成功時は詳細画面へ移動
+    redirect_to admin_dog_run_path(@dog_run), notice: "ドッグランを更新しました。"
+  else
+
+    # 更新失敗時は編集画面を再表示
+    render :edit, status: :unprocessable_entity
+  end
+end
 
   # ドッグラン新規登録画面
   def new
