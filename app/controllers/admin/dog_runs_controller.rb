@@ -1,24 +1,23 @@
 class Admin::DogRunsController < Admin::BaseController
-
   # ドッグラン一覧画面
   def index
     # 登録されているドッグランを名前順に取得
     @dog_runs = DogRun.order(:name)
   end
 
-    # ドッグラン詳細画面
+  # ドッグラン詳細画面
   def show
     # URLのIDに対応するドッグランを取得
     @dog_run = DogRun.find(params[:id])
   end
 
-    # ドッグラン編集画面
+  # ドッグラン編集画面
   def edit
     # URLのIDから編集対象のドッグランを取得
     @dog_run = DogRun.find(params[:id])
   end
 
-    # ドッグラン更新処理
+  # ドッグラン更新処理
   def update
     # URLのIDから更新対象のドッグランを取得
     @dog_run = DogRun.find(params[:id])
@@ -54,7 +53,7 @@ class Admin::DogRunsController < Admin::BaseController
     end
   end
 
-    # ドッグラン削除処理
+  # ドッグラン削除処理
   def destroy
     # URLのIDから削除対象のドッグランを取得
     @dog_run = DogRun.find(params[:id])
@@ -80,5 +79,4 @@ class Admin::DogRunsController < Admin::BaseController
       :longitude      # 経度
     )
   end
-
 end
