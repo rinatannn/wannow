@@ -253,7 +253,7 @@ class Admin::DogRunsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
-    # 住所変更時に緯度・経度が自動更新されることを確認
+  # 住所変更時に緯度・経度が自動更新されることを確認
   test "管理者が住所を変更すると緯度と経度が自動更新される" do
     # 管理者としてログイン
     post session_path, params: {

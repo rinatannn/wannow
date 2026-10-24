@@ -5,5 +5,5 @@ Geocoder.configure(
   "User-Agent" => "WanNow/1.0 (contact: #{ENV.fetch('GEOCODER_CONTACT_EMAIL', 'not-configured')})"
   },
   timeout: 5,
-  always_raise: [Geocoder::OverQueryLimitError]
+  always_raise: [ Geocoder::OverQueryLimitError ]
 )
