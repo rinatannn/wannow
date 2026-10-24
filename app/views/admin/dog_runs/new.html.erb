@@ -31,16 +31,23 @@
         <div class="mb-3">
           <%= f.label :address, "住所", class: "form-label fw-bold" %>
           <%= f.text_field :address, class: "form-control" %>
+
+          <!-- 住所入力の補足説明 -->
+          <div class="form-text">
+            住所を入力すると、登録時に緯度・経度を自動取得します。
+          </div>
         </div>
 
         <!-- 営業時間 -->
         <div class="row mb-3">
 
+          <!-- 開店時間 -->
           <div class="col-md-6">
             <%= f.label :opening_time, "開店時間", class: "form-label fw-bold" %>
             <%= f.time_field :opening_time, class: "form-control" %>
           </div>
 
+          <!-- 閉店時間 -->
           <div class="col-md-6">
             <%= f.label :closing_time, "閉店時間", class: "form-label fw-bold" %>
             <%= f.time_field :closing_time, class: "form-control" %>
@@ -54,26 +61,54 @@
           <%= f.label :indoor, "屋内施設", class: "form-check-label" %>
         </div>
 
-        <!-- 緯度・経度 -->
-        <div class="row mb-4">
+        <!-- 緯度・経度の設定 -->
+        <div class="mb-4">
 
-          <div class="col-md-6">
-            <%= f.label :latitude, "緯度", class: "form-label fw-bold" %>
-            <%= f.number_field :latitude, step: :any, class: "form-control" %>
-          </div>
+          <!-- 自動取得についての説明 -->
+          <p class="text-muted small mb-2">
+            緯度・経度は住所から自動取得されます。<br>
+            自動取得できない場合は、以下に手動入力してください。
+          </p>
 
-          <div class="col-md-6">
-            <%= f.label :longitude, "経度", class: "form-label fw-bold" %>
-            <%= f.number_field :longitude, step: :any, class: "form-control" %>
-          </div>
+          <!-- 手動入力欄の開閉 -->
+          <details <%= "open" if @dog_run.errors.any? %>>
+
+            <summary class="text-primary mb-3">
+              緯度・経度を手動入力する
+            </summary>
+
+            <!-- 緯度・経度の入力欄 -->
+            <div class="row">
+
+              <!-- 緯度 -->
+              <div class="col-md-6 mb-3">
+                <%= f.label :latitude, "緯度", class: "form-label fw-bold" %>
+                <%= f.number_field :latitude,
+                    step: :any,
+                    class: "form-control" %>
+              </div>
+
+              <!-- 経度 -->
+              <div class="col-md-6 mb-3">
+                <%= f.label :longitude, "経度", class: "form-label fw-bold" %>
+                <%= f.number_field :longitude,
+                    step: :any,
+                    class: "form-control" %>
+              </div>
+
+            </div>
+
+          </details>
 
         </div>
 
         <!-- 操作ボタン -->
         <div class="d-flex gap-2">
 
+          <!-- 登録ボタン -->
           <%= f.submit "登録する", class: "btn btn-success" %>
 
+          <!-- 一覧画面へ戻る -->
           <%= link_to "一覧に戻る",
               admin_dog_runs_path,
               class: "btn btn-outline-secondary" %>
