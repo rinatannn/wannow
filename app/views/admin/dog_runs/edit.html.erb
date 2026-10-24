@@ -1,0 +1,88 @@
+<div class="container my-5">
+
+  <!-- ページタイトル -->
+  <h2 class="fw-bold mb-4">ドッグラン編集</h2>
+
+  <!-- 編集フォーム -->
+  <div class="card shadow-sm border-0">
+    <div class="card-body p-4">
+
+      <%= form_with model: [:admin, @dog_run] do |f| %>
+
+        <!-- 入力エラーの表示 -->
+        <% if @dog_run.errors.any? %>
+          <div class="alert alert-danger">
+            <p class="fw-bold mb-2">入力内容を確認してください。</p>
+            <ul class="mb-0">
+              <% @dog_run.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <!-- ドッグラン名 -->
+        <div class="mb-3">
+          <%= f.label :name, "ドッグラン名", class: "form-label fw-bold" %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+
+        <!-- 住所 -->
+        <div class="mb-3">
+          <%= f.label :address, "住所", class: "form-label fw-bold" %>
+          <%= f.text_field :address, class: "form-control" %>
+        </div>
+
+        <!-- 営業時間 -->
+        <div class="row mb-3">
+
+          <div class="col-md-6">
+            <%= f.label :opening_time, "開店時間", class: "form-label fw-bold" %>
+            <%= f.time_field :opening_time, class: "form-control" %>
+          </div>
+
+          <div class="col-md-6">
+            <%= f.label :closing_time, "閉店時間", class: "form-label fw-bold" %>
+            <%= f.time_field :closing_time, class: "form-control" %>
+          </div>
+
+        </div>
+
+        <!-- 屋内施設 -->
+        <div class="form-check mb-3">
+          <%= f.check_box :indoor, class: "form-check-input" %>
+          <%= f.label :indoor, "屋内施設", class: "form-check-label" %>
+        </div>
+
+        <!-- 緯度・経度 -->
+        <div class="row mb-4">
+
+          <div class="col-md-6">
+            <%= f.label :latitude, "緯度", class: "form-label fw-bold" %>
+            <%= f.number_field :latitude, step: :any, class: "form-control" %>
+          </div>
+
+          <div class="col-md-6">
+            <%= f.label :longitude, "経度", class: "form-label fw-bold" %>
+            <%= f.number_field :longitude, step: :any, class: "form-control" %>
+          </div>
+
+        </div>
+
+        <!-- 操作ボタン -->
+        <div class="d-flex gap-2">
+
+          <%= f.submit "更新する", class: "btn btn-success" %>
+
+          <%= link_to "詳細に戻る",
+              admin_dog_run_path(@dog_run),
+              class: "btn btn-outline-secondary" %>
+
+        </div>
+
+      <% end %>
+
+    </div>
+  </div>
+
+</div>

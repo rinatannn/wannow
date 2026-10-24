@@ -1,0 +1,2 @@
+module Admin::DogRunsHelper
+end

@@ -1,0 +1,77 @@
+<div class="container my-5">
+
+  <!-- ページタイトルと新規登録ボタン -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold">ドッグラン管理</h2>
+
+    <%= link_to "＋ 新しいドッグランを登録",
+        new_admin_dog_run_path,
+        class: "btn btn-success" %>
+  </div>
+
+  <!-- ドッグラン一覧 -->
+  <% if @dog_runs.any? %>
+
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+
+            <thead class="table-light">
+              <tr>
+                <th>ドッグラン名</th>
+                <th>住所</th>
+                <th>営業時間</th>
+                <th class="text-center">操作</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @dog_runs.each do |dog_run| %>
+                <tr>
+
+                  <!-- ドッグラン名 -->
+                  <td class="fw-semibold">
+                    <%= dog_run.name %>
+                  </td>
+
+                  <!-- 住所 -->
+                  <td>
+                    <%= dog_run.address %>
+                  </td>
+
+                  <!-- 営業時間 -->
+                  <td>
+                    <%= dog_run.opening_time.strftime("%H:%M") %>
+                    〜
+                    <%= dog_run.closing_time.strftime("%H:%M") %>
+                  </td>
+
+                  <!-- 詳細ボタン -->
+                  <td class="text-center">
+                    <%= link_to "詳細を見る",
+                        admin_dog_run_path(dog_run),
+                        class: "btn btn-outline-success btn-sm" %>
+                  </td>
+
+                </tr>
+              <% end %>
+            </tbody>
+
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+  <% else %>
+
+    <!-- ドッグランが登録されていない場合 -->
+    <div class="alert alert-info text-center">
+      登録されているドッグランはありません。
+    </div>
+
+  <% end %>
+
+</div>

@@ -4,6 +4,7 @@ namespace :admin do
   post "login", to: "sessions#create"
 
   resources :groups
+  resources :dog_runs
   resources :comments, only: [ :index, :destroy ]
 
   resources :users, only: [ :index, :show ] do
