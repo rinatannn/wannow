@@ -5,6 +5,7 @@ namespace :admin do
 
   resources :groups
   resources :dog_runs
+  resources :dogs, only: [ :index, :show ]
   resources :comments, only: [ :index, :destroy ]
 
   resources :users, only: [ :index, :show ] do
