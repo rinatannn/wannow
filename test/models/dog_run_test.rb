@@ -31,4 +31,28 @@ class DogRunTest < ActiveSupport::TestCase
   test "正しい情報なら有効である" do
     assert @dog_run.valid?
   end
+
+  test "住所から緯度と経度を自動取得できる" do
+    Geocoder.configure(lookup: :test)
+
+    Geocoder::Lookup::Test.add_stub(
+      "福岡県テスト市1-2-3",
+      [
+        {
+          "latitude" => 33.5902,
+          "longitude" => 130.4017
+        }
+      ]
+    )
+
+    @dog_run.latitude = nil
+    @dog_run.longitude = nil
+
+    assert @dog_run.valid?
+    assert_equal 33.5902, @dog_run.latitude
+    assert_equal 130.4017, @dog_run.longitude
+  ensure
+    Geocoder.configure(lookup: :nominatim)
+    Geocoder::Lookup::Test.reset
+  end
 end

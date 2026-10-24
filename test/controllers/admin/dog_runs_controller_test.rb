@@ -252,4 +252,54 @@ class Admin::DogRunsControllerTest < ActionDispatch::IntegrationTest
     # トップページへ戻されることを確認
     assert_redirected_to root_path
   end
+
+    # 住所変更時に緯度・経度が自動更新されることを確認
+  test "管理者が住所を変更すると緯度と経度が自動更新される" do
+    # 管理者としてログイン
+    post session_path, params: {
+      email_address: users(:one).email_address,
+      password: "password"
+    }
+
+    # テスト用ドッグランを取得
+    dog_run = dog_runs(:one)
+
+    # Geocoderをテストモードに切り替える
+    Geocoder.configure(lookup: :test)
+
+    # 新しい住所に対して返す座標を設定
+    Geocoder::Lookup::Test.add_stub(
+      "東京都港区芝公園4-2-8",
+      [
+        {
+          "latitude" => 35.6586,
+          "longitude" => 139.7454
+        }
+      ]
+    )
+
+    # 住所を変更し、以前の座標をフォームから送信
+    patch admin_dog_run_path(dog_run), params: {
+      dog_run: {
+        address: "東京都港区芝公園4-2-8",
+        latitude: dog_run.latitude.to_s,
+        longitude: dog_run.longitude.to_s
+      }
+    }
+
+    # データベースから最新情報を取得
+    dog_run.reload
+
+    # 新しい住所と座標になっていることを確認
+    assert_equal "東京都港区芝公園4-2-8", dog_run.address
+    assert_in_delta 35.6586, dog_run.latitude.to_f, 0.0001
+    assert_in_delta 139.7454, dog_run.longitude.to_f, 0.0001
+
+    # 更新後、詳細画面に移動することを確認
+    assert_redirected_to admin_dog_run_path(dog_run)
+  ensure
+    # テスト終了後は元のGeocoder設定に戻す
+    Geocoder.configure(lookup: :nominatim)
+    Geocoder::Lookup::Test.reset
+  end
 end
