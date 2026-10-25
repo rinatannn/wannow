@@ -55,4 +55,26 @@ class DogRunTest < ActiveSupport::TestCase
     Geocoder.configure(lookup: :nominatim)
     Geocoder::Lookup::Test.reset
   end
+
+  test "位置情報を取得できない場合は案内メッセージが表示される" do
+  Geocoder.configure(lookup: :test)
+
+  Geocoder::Lookup::Test.add_stub(
+    "福岡県テスト市1-2-3",
+    []
+  )
+
+  @dog_run.latitude = nil
+  @dog_run.longitude = nil
+
+  assert_not @dog_run.valid?
+
+  assert_includes(
+    @dog_run.errors.full_messages,
+    "住所から位置情報を取得できませんでした。住所を確認するか、緯度・経度を手動入力してください。"
+  )
+ensure
+  Geocoder.configure(lookup: :nominatim)
+  Geocoder::Lookup::Test.reset
+end
 end
