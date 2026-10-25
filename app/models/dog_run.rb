@@ -19,6 +19,9 @@ class DogRun < ApplicationRecord
   validates :latitude, presence: true
   validates :longitude, presence: true
 
+  # 位置情報を取得できなかった場合のエラーメッセージ
+  validate :geocoding_failure_message
+
   # バリデーションエラーで表示する項目名を日本語にする
   def self.human_attribute_name(attribute, options = {})
     {
@@ -38,5 +41,16 @@ class DogRun < ApplicationRecord
     # 住所が変更され、緯度または経度が空欄の場合に自動取得
     will_save_change_to_address? &&
       (latitude.blank? || longitude.blank?)
+  end
+
+  # 位置情報を取得できなかった場合のエラーメッセージ
+  def geocoding_failure_message
+    return if address.blank?
+    return if latitude.present? && longitude.present?
+
+    errors.add(
+      :base,
+      "住所から位置情報を取得できませんでした。住所を確認するか、緯度・経度を手動入力してください。"
+    )
   end
 end
