@@ -1,9 +1,7 @@
 Geocoder.configure(
-  lookup: :nominatim,
+  lookup: :google,
+  api_key: ENV.fetch("GOOGLE_GEOCODING_API_KEY"),
   language: :ja,
-  http_headers: {
-  "User-Agent" => "WanNow/1.0 (contact: #{ENV.fetch('GEOCODER_CONTACT_EMAIL', 'not-configured')})"
-  },
   timeout: 5,
-  always_raise: [ Geocoder::OverQueryLimitError ]
+  always_raise: [Geocoder::OverQueryLimitError]
 )
