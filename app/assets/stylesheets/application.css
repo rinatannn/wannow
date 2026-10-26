@@ -3378,3 +3378,69 @@ header nav {
   font-size: 17px;
   line-height: 1.8;
 }
+
+/* ユーザー検索ページ全体 */
+.user-index {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+/* 見出し */
+.user-index h1 {
+  font-size: 28px;
+  color: #355e52;
+  margin-bottom: 28px;
+}
+
+/* 検索フォーム */
+.user-search-form {
+  display: flex;
+  gap: 12px;
+  margin: 24px 0 32px;
+}
+
+/* 検索入力欄 */
+.user-search-form input[type="text"] {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 16px;
+  border: 1px solid #d5e2de;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+/* 検索ボタン */
+.user-search-form input[type="submit"] {
+  background-color: #355e52;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  cursor: pointer;
+}
+
+/* ユーザーカード */
+.user-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* ユーザー名 */
+.user-card h2 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.user-card h2 a {
+  color: #355e52;
+  text-decoration: none;
+}
+
+/* マウスを乗せたとき */
+.user-card h2 a:hover {
+  text-decoration: underline;
+}

@@ -1,6 +1,7 @@
-<h1>ユーザー検索</h1>
+<div class="user-index">
+  <h1>ユーザー検索</h1>
 
-<%= form_with url: users_path, method: :get, local: true do |f| %>
+<%= form_with url: users_path, method: :get, local: true, class: "user-search-form" do |f| %>
   <%= f.text_field :keyword, value: params[:keyword], placeholder: "ユーザー名を入力" %>
   <%= f.submit "検索" %>
 <% end %>
@@ -9,10 +10,11 @@
 
 <% if @users.any? %>
   <% @users.each do |user| %>
-    <div>
-      <p><%= link_to user.name, user_path(user) %></p>
-    </div>
-  <% end %>
+  <div class="user-card">
+    <h2><%= link_to user.name, user_path(user) %></h2>
+  </div>
+<% end %>
 <% else %>
   <p>該当するユーザーが見つかりませんでした。</p>
 <% end %>
+</div>
