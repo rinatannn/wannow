@@ -2,16 +2,16 @@
 class UsersController < ApplicationController
   allow_unauthenticated_access only: %i[new create]
 
-# ユーザー一覧・名前検索
-def index
-  @users = User.where(admin: false, is_active: true)
-             .where.not(email_address: User::GUEST_EMAIL)
-             .order(:name)
-  if params[:keyword].present?
-    keyword = "%#{User.sanitize_sql_like(params[:keyword])}%"
-    @users = @users.where("name LIKE ?", keyword)
+  # ユーザー一覧・名前検索
+  def index
+    @users = User.where(admin: false, is_active: true)
+                 .where.not(email_address: User::GUEST_EMAIL)
+                 .order(:name)
+    if params[:keyword].present?
+      keyword = "%#{User.sanitize_sql_like(params[:keyword])}%"
+      @users = @users.where("name LIKE ?", keyword)
+    end
   end
-end
 
   # 新規登録画面を表示
   def new
@@ -89,26 +89,26 @@ end
     end
   end
 
-# 会員を退会
-def destroy
-  @user = Current.user
+  # 会員を退会
+  def destroy
+    @user = Current.user
 
-  # 他のユーザーのIDでは退会できない
-  if params[:id].to_i != @user.id
-    redirect_to mypage_path, alert: "他のユーザーの退会操作はできません。"
-    return
+    # 他のユーザーのIDでは退会できない
+    if params[:id].to_i != @user.id
+      redirect_to mypage_path, alert: "他のユーザーの退会操作はできません。"
+      return
+    end
+
+    # ゲストユーザーは退会できない
+    if @user.guest?
+      redirect_to mypage_path, alert: "ゲストユーザーは退会できません。"
+      return
+    end
+
+    @user.destroy
+    reset_session
+    redirect_to new_user_path
   end
-
-  # ゲストユーザーは退会できない
-  if @user.guest?
-    redirect_to mypage_path, alert: "ゲストユーザーは退会できません。"
-    return
-  end
-
-  @user.destroy
-  reset_session
-  redirect_to new_user_path
-end
 
   private
 
